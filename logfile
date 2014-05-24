@@ -1,0 +1,5 @@
+LOG:  database system was shut down at 2014-05-23 01:31:36 EDT
+LOG:  autovacuum launcher started
+LOG:  database system is ready to accept connections
+ERROR:  relation "companies" does not exist at character 27
+STATEMENT:  SELECT "companies".* FROM "companies"
