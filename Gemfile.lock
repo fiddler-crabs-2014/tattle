@@ -45,7 +45,14 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.7.0)
-    database_cleaner (1.3.0)
+    columnize (0.8.9)
+    database_cleaner (1.2.0)
+    debugger (1.6.6)
+      columnize (>= 0.3.1)
+      debugger-linecache (~> 1.2.0)
+      debugger-ruby_core_source (~> 1.3.2)
+    debugger-linecache (1.2.0)
+    debugger-ruby_core_source (1.3.5)
     diff-lcs (1.2.5)
     erubis (2.7.0)
     execjs (2.0.2)
@@ -128,7 +135,7 @@ GEM
       sass (~> 3.2.0)
       sprockets (~> 2.8, <= 2.11.0)
       sprockets-rails (~> 2.0)
-    selenium-webdriver (2.42.0)
+    selenium-webdriver (2.41.0)
       childprocess (>= 0.5.0)
       multi_json (~> 1.0)
       rubyzip (~> 1.0)
@@ -175,11 +182,14 @@ DEPENDENCIES
   capybara
   coffee-rails (~> 4.0.0)
   database_cleaner
+  debugger
   factory_girl_rails
   faker
   freebase-api
+  httparty
   jbuilder (~> 2.0)
   jquery-rails
+  nokogiri
   pg
   rails (= 4.1.1)
   rails_12factor
