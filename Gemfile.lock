@@ -186,8 +186,10 @@ DEPENDENCIES
   factory_girl_rails
   faker
   freebase-api
+  httparty
   jbuilder (~> 2.0)
   jquery-rails
+  nokogiri
   pg
   rails (= 4.1.1)
   rails_12factor
