@@ -31,7 +31,7 @@ Rails.application.configure do
   # Checks for improperly declared sprockets dependencies.
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
-
+  FreebaseAPI.session = FreebaseAPI::Session.new(key: 'AIzaSyDTRAuq33BZlQnAepytW-ehI5v-tsUDccI', env: :stable)
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 end
