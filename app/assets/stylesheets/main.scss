@@ -1,0 +1,62 @@
+/*colors*/
+
+$red: #cf4627;
+$unselected-red: #ebb1a7;
+$blue: #3498db;
+$intro-color: #5f6062;
+$body-color: #48484a;
+
+/*fonts*/
+
+$serif-font: "Roboto Slab", serif;
+$condensed-sans: "museo-sans-condensed", sans-serif;
+$reg-sans: "museo-sans", sans-serif;
+
+body {
+	font-family: $serif-font;
+	color: $body-color;
+	font-weight: 400;
+	/*font-size: ;*/
+}
+
+a {
+	text-decoration: none;
+	color: $blue;
+}
+
+.intro {
+	font-family: $serif-font;
+	font-weight: 300;
+	color: $intro-color;
+/*	font-size: ; 
+	letter-spacing: ;*/
+
+}
+
+.category {
+	font-family: $condensed-sans;
+	color: $red;
+	font-weight: 700;
+	text-transform: uppercase;
+	/*	font-size: ; 
+	letter-spacing: ;*/
+
+}
+
+.section-head {
+	font-family: $reg-sans;
+	color: $blue;
+	font-weight: 100;
+	/*	font-size: ; 
+	letter-spacing: ;*/
+}
+
+.section-subhead {
+	font-family: $reg-sans;
+	color: $blue;
+	font-weight: 700;
+	/*	font-size: ; 
+	letter-spacing: ;*/
+}
+
+
