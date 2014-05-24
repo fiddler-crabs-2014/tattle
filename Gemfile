@@ -40,6 +40,3 @@ group :test do
   gem 'debugger'
 end
 
-# Use debugger
-# gem 'debugger', group: [:development, :test]
-
