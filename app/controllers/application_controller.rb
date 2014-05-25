@@ -8,6 +8,11 @@ class ApplicationController < ActionController::Base
     companies = self.freebase_search(company_name)
     companies.each do |company|
       results[company] = { nyt: self.search_articles(company)}
+      begin
+        results[company][:certifications] = Company.where("name like ?", "%#{company}%").first.certificates.pluck(:name)
+      rescue
+        results[company][:certifications] = "None"
+      end
     end
     results
   end
@@ -15,9 +20,13 @@ class ApplicationController < ActionController::Base
 
   def self.freebase_search(company_name)
     companies = []
-    resource = FreebaseAPI.session.mqlread({:name => company_name, :'/organization/organization/parent' => [{ :parent => nil }] })
-    resource["/organization/organization/parent"].each { |parent|  companies << parent['parent'] }
+    begin
+      resource = FreebaseAPI.session.mqlread({:name => company_name.capitalize!, :'/organization/organization/parent' => [{ :parent => nil }] })
+      resource["/organization/organization/parent"].each { |parent|  companies << parent['parent'] } if resource
+    rescue
+    end
     companies.unshift(company_name)
+    puts "COMPANIES #{companies}"
     companies
   end
 
