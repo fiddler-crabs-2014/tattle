@@ -24,9 +24,9 @@ class ApplicationController < ActionController::Base
   def self.search_articles ( query )
     query.chomp!(" Co")
     query_formatted = query.gsub(" ", "+")
-    puts "#{ENV["NYT_ARTICLE_KEY"]}"
+    puts query_formatted
 
-    uri = "http://api.nytimes.com/svc/search/v1/article?format=json&query=" + query_formatted + "+opposition&fields=title%2C+date%2C+url&api-key=" + ENV["NYT_ARTICLE_KEY"]
+    uri = "http://api.nytimes.com/svc/search/v1/article?format=json&query=" + query_formatted + "+opposition&fields=title%2C+date%2C+url&api-key=" + "9f7876895414dc78acc8fe1c9a0dbd03:16:63558649"
 
     result = HTTParty.get( uri )
     puts "RESULT #{result}"

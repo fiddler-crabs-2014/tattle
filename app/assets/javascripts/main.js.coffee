@@ -6,8 +6,8 @@ CC = angular.module('CC', ['ngRoute'])
 
 # Sets up routing
 CC.config(['$routeProvider', ($routeProvider) ->
-  # Route for '/post'
-  $routeProvider.when('/post', { templateUrl: '/templates/mainPost.html', controller: 'PostCtrl' } )
+  # Route for '/browse'
+  $routeProvider.when('/browse', { templateUrl: '/templates/mainBrowse.html', controller: 'BrowseCtrl' } )
 
   # Default
   $routeProvider.otherwise({ templateUrl: '/templates/mainIndex.html', controller: 'IndexCtrl' } )

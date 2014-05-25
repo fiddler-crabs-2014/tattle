@@ -16,6 +16,7 @@ $(document).ready(function () {
           dataType: 'json'
         }).success(function(data) {
           console.log(data);
+          // redirect to
         }).fail(function(){
           console.log("you suck at programming")
         })
