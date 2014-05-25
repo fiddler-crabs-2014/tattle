@@ -8,28 +8,28 @@
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js"></script>
   <script type="text/javascript" src="https://www.gstatic.com/freebase/suggest/4_1/suggest.min.js"></script>
   <script type="text/javascript">
-      $(function() {
-        $("#myinput").suggest({
-          key: 'AIzaSyDTRAuq33BZlQnAepytW-ehI5v-tsUDccI',
-          filter:'(all type:/business/business_operation)'
-          // filter:'(all type:/business/brand)'
-        });
-      });
-      $(function () {$("#myform").on('submit', function(event) {
-        event.preventDefault();
-        var company = $('#myinput').val();
-        $.ajax({
-          url: '/search',
-          type: "get",
-          data: {company_name: company},
-          dataType: 'json'
-        }).success(function(data) {
-          console.log(data);
-        }).fail(function(){
-          console.log("you suck at programming")
-        })
-      });
-    })
+    //   $(function() {
+    //     $("#myinput").suggest({
+    //       key: 'AIzaSyDTRAuq33BZlQnAepytW-ehI5v-tsUDccI',
+    //       filter:'(all type:/business/business_operation)'
+    //       // filter:'(all type:/business/brand)'
+    //     });
+    //   });
+    //   $(function () {$("#myform").on('submit', function(event) {
+    //     event.preventDefault();
+    //     var company = $('#myinput').val();
+    //     $.ajax({
+    //       url: '/search',
+    //       type: "get",
+    //       data: {company_name: company},
+    //       dataType: 'json'
+    //     }).success(function(data) {
+    //       console.log(data);
+    //     }).fail(function(){
+    //       console.log("you suck at programming")
+    //     })
+    //   });
+    // })
   </script>
   <%= csrf_meta_tags %>
 </head>
