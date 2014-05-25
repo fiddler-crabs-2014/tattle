@@ -1,4 +1,5 @@
 #= require_directory ./controllers/main
+#= require_directory ./freebase
 
 # Creates new Angular module called 'CC'
 CC = angular.module('CC', ['ngRoute'])

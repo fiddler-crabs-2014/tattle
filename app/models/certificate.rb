@@ -25,4 +25,12 @@ class Certificate < ActiveRecord::Base
   end
 
 
+  def self.rainforest_alliance_get_certs
+    page = Nokogiri::HTML(open("http://www.rainforest-alliance.org/green-living/shopthefrog?country=all").read)
+    @certificate = Certificate.create(body: "Rain Forest Alliance", name: "Rain Forest Alliance Certified", category: "environment")
+    page.xpath('//div[2]/div[2]/div[2]/div/ul/li/a').each{ |element| @certificate.companies.create(name: element.text ) }
+    page.xpath('//div[2]/div[2]/div[3]/div/ul/li/a').each{ |element| @certificate.companies.create(name: element.text ) }
+    page.xpath('//div[4]/div/ul/li/a').each{ |element| @certificate.companies.create(name: element.text ) }
+  end
+
 end
