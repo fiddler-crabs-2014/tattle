@@ -1,7 +1,8 @@
 require 'spec_helper'
 
 describe MainController do 
-	# describe "#search" do 
- #    expect(response).to be_success
- #  end
+	describe "#search" do 
+    # it "should "    
+
+  end
 end
