@@ -8,8 +8,10 @@ class MainController < ApplicationController
   end
 
   def search
+    puts "INSIDE SEARCH ---- PARAMS: #{params.inspect}"
     respond_to do |format|
-      format.json { render :json => ApplicationController.generate_results(params["company_name"]) }
+      format.html { render :json => ApplicationController.generate_results(params["company"]) }
+      format.json { render :json => ApplicationController.generate_results(params["company"]) }
     end
   end
 

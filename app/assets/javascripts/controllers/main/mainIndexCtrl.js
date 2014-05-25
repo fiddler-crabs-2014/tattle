@@ -1,18 +1,37 @@
-this.IndexCtrl = function($scope, $location) {
+this.IndexCtrl = function($scope, $location, $http) {
 
+  // $("#myform").on('submit', function(event) {
+  //   event.preventDefault();
+  //   var company = $('#myinput').val();
+  //   $.ajax({
+  //     url: '/search',
+  //     type: "get",
+  //     data: {company_name: company},
+  //     dataType: 'json'
+  //   }).success(function(data) {
+  //     console.log(data);
+
+  //   }).fail(function(){
+  //     console.log("you suck at programming")
+  //   })
+  // });
   $("#myform").on('submit', function(event) {
+    console.log("clicked submit")
     event.preventDefault();
-    var company = $('#myinput').val();
-    $.ajax({
-      url: '/search',
-      type: "get",
-      data: {company_name: company},
-      dataType: 'json'
-    }).success(function(data) {
+    console.log("submitted form")
+    var search_company = $('#myinput').val();
+
+    var responsePromise = $http.get('/search', {params: {company: search_company}});
+
+    responsePromise.success(function(data) {
       console.log(data);
-    }).fail(function(){
-      console.log("you suck at programming")
-    })
+      $scope.company_info = data;
+    });
+
+    responsePromise.error(function() {
+      alert("AJAX failed!");
+    });
+
   });
 
   $scope.nope = {

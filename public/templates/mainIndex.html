@@ -1,5 +1,9 @@
 
-<div ng-repeat="post in nope.posts">
-    <h2><a href="" ng-click="viewBrowse()">{{ post.title }}</a></h2>
-    <p>{{ post.contents }}</p>
+<div ng-show="company_info.company.name" class="company-div">
+<span class="category">{{company_info.company.name}}'s parent company is {{company_info.parent1.name}}</span>
+<span class="section-head">{{company_info.company.name}}'s parent company is {{company_info.parent1.name}}</span>
+<span class="section-subhead">{{company_info.company.name}}'s parent company is {{company_info.parent1.name}}</span>
+  {{company_info.company.name}}
+
 </div>
+<div ng-show="company_info.parent1.name" class="company-div">{{company_info.parent1.name}}</div>
