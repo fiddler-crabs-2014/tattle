@@ -11,9 +11,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20140523154721) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "certificates", force: true do |t|
+    t.string   "name"
+    t.string   "body"
+    t.string   "category"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "certifications", force: true do |t|
+    t.integer "company_id"
+    t.integer "certificate_id"
+  end
+
+  create_table "companies", force: true do |t|
+    t.string   "name"
+    t.integer  "industry_id"
+    t.text     "result_json"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "industries", force: true do |t|
+    t.string "name"
+  end
 
 end

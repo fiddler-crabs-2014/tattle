@@ -4,27 +4,34 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   private
   def self.generate_results(company_name)
-    results = {"nyt_results" => self.nyt_search(self.freebase_search(company_name))}#.to_json
-  end
-
-  def self.nyt_search(companies)
-    search_results = {}
+    results = {}
+    companies = self.freebase_search(company_name)
     companies.each do |company|
-      #do some NYT search
-      #search_results[parent] = resultlt of NYT search
-      puts "Inside the NYT: #{company}"
-      search_results[company] = company
-
+      results[company] = { nyt: self.search_articles(company)}
     end
-    search_results
+    results
   end
+
 
   def self.freebase_search(company_name)
+    companies = []
     resource = FreebaseAPI.session.mqlread({:name => company_name, :'/organization/organization/parent' => [{ :parent => nil }] })
-    puts "RESOURCE: #{resource.inspect}"
-    companies = resource["/organization/organization/parent"].map { |parent| parent["parent"] }
-    companies << company_name
-    puts "COMPANIES: #{companies}"
+    resource["/organization/organization/parent"].each { |parent|  companies << parent['parent'] }
+    companies.unshift(company_name)
     companies
   end
+
+  def self.search_articles ( query )
+    query.chomp!(" Co")
+    query_formatted = query.gsub(" ", "+")
+    puts "#{ENV["NYT_ARTICLE_KEY"]}"
+
+    uri = "http://api.nytimes.com/svc/search/v1/article?format=json&query=" + query_formatted + "+opposition&fields=title%2C+date%2C+url&api-key=" + ENV["NYT_ARTICLE_KEY"]
+
+    result = HTTParty.get( uri )
+    puts "RESULT #{result}"
+    formatted_result = result.to_hash.symbolize_keys[:results]
+
+  end
+
 end
