@@ -60,9 +60,13 @@ a {
 	color: $red;
 	font-weight: 700;
 	text-transform: uppercase;
-	/*	font-size: ;
-	letter-spacing: ;*/
+	font-size: 1.5em;
+	margin: 0;
+	/* letter-spacing: ;*/
+}
 
+.c-subhead {
+	opacity: .4;
 }
 
 .section-head {
@@ -81,6 +85,11 @@ a {
 	letter-spacing: ;*/
 }
 
+.no_margin {
+	margin: 0;
+}
+
+
 /*FORM ELEMENTS*/
 
 #mybutton {
@@ -97,7 +106,7 @@ a {
 	text-transform: uppercase;
   text-decoration: none;
   padding: 10px 13px;
-  width: 17%;
+  width: 16%;
 }
 
 #myinput {
@@ -106,6 +115,14 @@ a {
 	height: 35px;
 	margin-right: 1.32%;
 	width: 80%;
+}
+
+input[type="text"] {
+	font-family: $serif-font;
+	color: $body-color;
+	font-weight: 400;
+	font-size: 0.9em;
+	padding-left: 1%;
 }
 
 /*DIVS*/
@@ -124,7 +141,7 @@ a {
 	background-color: #fff;
 	border-radius: 4px;
 	border: 6px solid $blue;
-	padding: 3em;
+	padding: 2em;
 	margin-top: 3%;
 	margin-bottom: 3%;
 }
@@ -141,19 +158,25 @@ a {
 	width: 17%;
 }
 
-#footer {
-	background-color: #fff;
-	bottom: 0;
-	font-size: 1.5em;
-	font-family: "museo-sans-condensed", sans-serif;
-	height: 12%;
-	left: 50%;
-	margin: 0 0 0 -34%;
-	position: fixed;
-	width: 68%;
-	display: none;
+.grid_1 { width: 25%; }
+.grid_2 { width: 70%; }
+.grid_3 { width: 235px; }
+
+.grid_1,
+.grid_2,
+.grid_3 {
+	margin-right: 2%;
+	float: left;
+	display: block;
 }
 
+.clear{clear:both;display:block;overflow:hidden;visibility:hidden;width:0;height:0}.clearfix:after{clear:both;content:' ';display:block;font-size:0;line-height:0;visibility:hidden;width:0;height:0}* html .clearfix,*:first-child+html .clearfix{zoom:1}
 
+/*MEDIA QUERIES*/
 
+@media all and (max-width: 699px) and (min-width: 520px), (min-width: 1151px) {
+  body {
+    background: #ccc;
+  }
+}
 
