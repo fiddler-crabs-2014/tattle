@@ -41,12 +41,19 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<div class="container">
+<div id="intro-div">
+  <h1 id="title">Conscious Consumer</h1>
+  <div id="black-line"></div>
+  <h2 id="intro">Some introductory text about who we are and what we do goes here, but I don't know what it is yet.
+</div>
 <form id="myform">
   <input type="text" id="myinput"/>
-  <input type="submit" value="search">
+  <input type="submit" value="search" id="mybutton">
 </form>
-
 <%= yield %>
+</div>
+
 
 </body>
 </html>
