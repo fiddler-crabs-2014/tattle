@@ -2,9 +2,9 @@ class MainController < ApplicationController
   respond_to :json
 
   def index
-    @certificates = Certificate.all
-    @companies = Company.all
-    respond_with @certificates
+    # @certificates = Certificate.all
+    # @companies = Company.all
+    # respond_with @certificates
   end
 
   def search

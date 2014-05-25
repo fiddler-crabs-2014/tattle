@@ -17,7 +17,6 @@ class ApplicationController < ActionController::Base
     results
   end
 
-
   def self.freebase_search(company_name)
     companies = []
     begin

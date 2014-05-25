@@ -1,4 +1,20 @@
-this.IndexCtrl = function($scope, $location, $http) {
+this.IndexCtrl = function($scope, $location) {
+
+  $("#myform").on('submit', function(event) {
+    event.preventDefault();
+    var company = $('#myinput').val();
+    $.ajax({
+      url: '/search',
+      type: "get",
+      data: {company_name: company},
+      dataType: 'json'
+    }).success(function(data) {
+      console.log(data);
+    }).fail(function(){
+      console.log("you suck at programming")
+    })
+  });
+
   $scope.nope = {
     posts: [
       {
@@ -11,13 +27,9 @@ this.IndexCtrl = function($scope, $location, $http) {
     ]
   };
 
-  $http.get('./companies.json').success((data) ->
-    $scope.companies = data
-  )
-
-
   return $scope.viewBrowse = function() {
     return $location.url('/browse');
   };
+
 };
 
