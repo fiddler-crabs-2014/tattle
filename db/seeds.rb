@@ -5,3 +5,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+#seed database data
+Certificate.ftf_get_certs
+Certificate.ftusa_get_certs
+Certificate.rainforest_alliance_get_certs

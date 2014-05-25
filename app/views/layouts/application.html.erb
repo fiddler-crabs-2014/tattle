@@ -15,38 +15,45 @@
   <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 
   <script type="text/javascript">
-      $(function() {
-        $("#myinput").suggest({
-          key: 'AIzaSyDTRAuq33BZlQnAepytW-ehI5v-tsUDccI',
-          filter:'(all type:/business/business_operation)'
-          // filter:'(all type:/business/brand)'
-        });
-      });
-      $(function () {$("#myform").on('submit', function(event) {
-        event.preventDefault();
-        var company = $('#myinput').val();
-        $.ajax({
-          url: '/search',
-          type: "get",
-          data: {company_name: company},
-          dataType: 'json'
-        }).success(function(data) {
-          console.log(data);
-        }).fail(function(){
-          console.log("you suck at programming")
-        })
-      });
-    })
+    //   $(function() {
+    //     $("#myinput").suggest({
+    //       key: 'AIzaSyDTRAuq33BZlQnAepytW-ehI5v-tsUDccI',
+    //       filter:'(all type:/business/business_operation)'
+    //       // filter:'(all type:/business/brand)'
+    //     });
+    //   });
+    //   $(function () {$("#myform").on('submit', function(event) {
+    //     event.preventDefault();
+    //     var company = $('#myinput').val();
+    //     $.ajax({
+    //       url: '/search',
+    //       type: "get",
+    //       data: {company_name: company},
+    //       dataType: 'json'
+    //     }).success(function(data) {
+    //       console.log(data);
+    //     }).fail(function(){
+    //       console.log("you suck at programming")
+    //     })
+    //   });
+    // })
   </script>
   <%= csrf_meta_tags %>
 </head>
 <body>
+<div class="container">
+<div id="intro-div">
+  <h1 id="title">Conscious Consumer</h1>
+  <div id="black-line"></div>
+  <h2 id="intro">Some introductory text about who we are and what we do goes here, but I don't know what it is yet.
+</div>
 <form id="myform">
   <input type="text" id="myinput"/>
-  <input type="submit" value="search">
+  <input type="submit" value="search" id="mybutton">
 </form>
-
 <%= yield %>
+</div>
+
 
 </body>
 </html>
