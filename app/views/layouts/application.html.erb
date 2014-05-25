@@ -41,12 +41,14 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<div class="container">
+<%= yield %>
 <form id="myform">
   <input type="text" id="myinput"/>
-  <input type="submit" value="search">
+  <input type="submit" value="search" id="mybutton">
 </form>
+</div>
 
-<%= yield %>
 
 </body>
 </html>
