@@ -1,9 +1,16 @@
+<div ng-show="company_info.company" class="company-div">
+  <h2 ng-show="company_info.parent1" class="section-head">{{company_info.company.name}}'s parent company is {{company_info.parent1.name}}</h2>
 
-<div ng-show="company_info.company.name" class="company-div">
-<span class="category">{{company_info.company.name}}'s parent company is {{company_info.parent1.name}}</span>
-<span class="section-head">{{company_info.company.name}}'s parent company is {{company_info.parent1.name}}</span>
-<span class="section-subhead">{{company_info.company.name}}'s parent company is {{company_info.parent1.name}}</span>
-  {{company_info.company.name}}
-
+  <p ng-show="!company_info.parent1" class="section-head">{{company_info.company.name}} doesn't appear to have a parent company</p>
 </div>
-<div ng-show="company_info.parent1.name" class="company-div">{{company_info.parent1.name}}</div>
+
+<div ng-show="company_info.parent1.name" class="company-div">
+  <p class="section-head">{{company_info.parent1.name}}</p>
+</div>
+
+<div ng-show="company_info.parent1.nyt" class="company-div">
+  <p class="category">Articles we think you might like:</p>
+  <p ng-repeat="article in company_info.parent1.nyt">
+    <a href="{{article.url}}" target="_blank">{{article.title}}</a>
+  </p>
+</div>
