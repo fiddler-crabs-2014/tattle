@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
           results["company"][:certifications] = nil
         end
       elsif key.to_s.match("parent")
-        results[key][:nyt] = self.search_articles(value[:name])
+        results[key][:nyt] = self.search_articles(value[:name]) if value[:name]
         begin
           results[key][:certifications] = Company.where("name like ?", "%#{value[:name]}%").first.certificates.pluck(:name)
         rescue
@@ -48,11 +48,11 @@ class ApplicationController < ActionController::Base
   end
 
   def self.search_articles ( query )
-    p "query : " + query
+    p query
     query.chomp!(" co")
-    p "query : " + query
+    # p "query : " + query
     query_formatted = query.gsub(" ", "+")
-    p "query formatted: " + query_formatted
+    # p "query formatted: " + query_formatted
 
     uri = "http://api.nytimes.com/svc/search/v1/article?format=json&query=" + query_formatted + "+opposition&fields=title%2C+date%2C+url&api-key=" + "9f7876895414dc78acc8fe1c9a0dbd03:16:63558649"
 
