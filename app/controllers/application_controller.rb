@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
-  #protect_from_forgery with: :exception
+  # protect_from_forgery with: :exception
   private
   def self.generate_results(company_name)
    results = self.freebase_search(company_name)
@@ -9,14 +9,14 @@ class ApplicationController < ActionController::Base
       if key == "company"
         results["company"][:nyt] = self.search_articles(company_name)
         begin
-          results["company"][:certifications] = Company.where("name like ?", "%#{company}%").first.certificates.pluck(:name)
+          results["company"][:certifications] = Company.where("name like ?", "%#{company_name}%").first.certificates.pluck(:name)
         rescue
-          results["company"][:certifications] = "None"
+          results["company"][:certifications] = nil
         end
       elsif key.to_s.match("parent")
         results[key][:nyt] = self.search_articles(value[:name][0])
         begin
-          results[key][:certifications] = Company.where("name like ?", "%#{company}%").first.certificates.pluck(:name)
+          results[key][:certifications] = Company.where("name like ?", "%#{value[:name][0]}%").first.certificates.pluck(:name)
         rescue
         end
       end
@@ -58,7 +58,7 @@ class ApplicationController < ActionController::Base
 
   def self.get_description(id)
     resource = FreebaseAPI::Topic.get(id)
-    resource.description
+    resource.description || "No Description Available for this company. "
   end
 
   def self.get_id(company)
