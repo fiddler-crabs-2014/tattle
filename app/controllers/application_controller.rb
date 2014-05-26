@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
-  #protect_from_forgery with: :exception
+  # protect_from_forgery with: :exception
   private
   def self.generate_results(company_name)
    results = self.freebase_search(company_name)
@@ -9,14 +9,14 @@ class ApplicationController < ActionController::Base
       if key == "company"
         results["company"][:nyt] = self.search_articles(company_name)
         begin
-          results["company"][:certifications] = Company.where("name like ?", "%#{company}%").first.certificates.pluck(:name)
+          results["company"][:certifications] = Company.where("name like ?", "%#{company_name}%").first.certificates.pluck(:name)
         rescue
-          results["company"][:certifications] = "None"
+          results["company"][:certifications] = nil
         end
       elsif key.to_s.match("parent")
         results[key][:nyt] = self.search_articles(value[:name])
         begin
-          results[key][:certifications] = Company.where("name like ?", "%#{company}%").first.certificates.pluck(:name)
+          results[key][:certifications] = Company.where("name like ?", "%#{value[:name]}%").first.certificates.pluck(:name)
         rescue
         end
       end
@@ -48,8 +48,11 @@ class ApplicationController < ActionController::Base
   end
 
   def self.search_articles ( query )
+    p "query : " + query
     query.chomp!(" co")
+    p "query : " + query
     query_formatted = query.gsub(" ", "+")
+    p "query formatted: " + query_formatted
 
     uri = "http://api.nytimes.com/svc/search/v1/article?format=json&query=" + query_formatted + "+opposition&fields=title%2C+date%2C+url&api-key=" + "9f7876895414dc78acc8fe1c9a0dbd03:16:63558649"
 
@@ -61,7 +64,7 @@ class ApplicationController < ActionController::Base
 
   def self.get_description(id)
     resource = FreebaseAPI::Topic.get(id)
-    resource.description
+    resource.description || "No Description Available for this company. "
   end
 
   def self.get_id(company)

@@ -13,7 +13,7 @@ this.IndexCtrl = function($scope, $location, $http) {
     });
 
     responsePromise.error(function() {
-      alert("AJAX failed!");
+      alert("No, not that one. Try a different one.");
     });
 
   });
