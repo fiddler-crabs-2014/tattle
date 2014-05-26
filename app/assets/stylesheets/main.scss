@@ -8,7 +8,8 @@ $body-color: #48484a;
 
 /*fonts*/
 
-$serif-font: "Roboto Slab", serif;
+/*$serif-font: "Roboto Slab", serif;*/
+$serif-font: "chaparral-pro", serif;
 $condensed-sans: "museo-sans-condensed", sans-serif;
 $reg-sans: "museo-sans", sans-serif;
 
@@ -36,9 +37,10 @@ a {
 
 #intro {
 	font-family: $serif-font;
-	font-weight: 300;
+	font-weight: 400;
 	color: $intro-color;
-	font-size: 1.9em;
+	line-height: 114%;
+	font-size: 2.5em;
 	margin: 18px 0;
 	/* letter-spacing: ;*/
 
