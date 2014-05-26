@@ -4,22 +4,20 @@ class ApplicationController < ActionController::Base
   #protect_from_forgery with: :exception
   private
   def self.generate_results(company_name)
-    results = {}
-    companies = self.freebase_search(company_name)
-    companies.each_with_index do |company, index|
-      if index == 0
-        results["company"] = { name: company, nyt: self.search_articles(company)}
+   results = self.freebase_search(company_name)
+    results.each do |key, value|
+      if key == "company"
+        results["company"][:nyt] = self.search_articles(company_name)
         begin
           results["company"][:certifications] = Company.where("name like ?", "%#{company}%").first.certificates.pluck(:name)
         rescue
           results["company"][:certifications] = "None"
         end
-      else
-        results["parent"+index.to_s] = { name: company, nyt: self.search_articles(company)}
+      elsif key.to_s.match("parent")
+        results[key][:nyt] = self.search_articles(value[:name][0])
         begin
-          results["parent"+index.to_s][:certifications] = Company.where("name like ?", "%#{company}%").first.certificates.pluck(:name)
+          results[key][:certifications] = Company.where("name like ?", "%#{company}%").first.certificates.pluck(:name)
         rescue
-          results["parent"+index.to_s][:certifications] = "None"
         end
       end
     end
@@ -27,14 +25,23 @@ class ApplicationController < ActionController::Base
   end
 
   def self.freebase_search(company_name)
-    companies = []
+    results = {"company" => { name: company_name }}
+    resource = FreebaseAPI::Topic.search(company_name)
+    best_match = resource.values.first
+    id = best_match.id
     begin
-      resource = FreebaseAPI.session.mqlread({:name => company_name.capitalize!, :'/organization/organization/parent' => [{ :parent => nil }] })
-      resource["/organization/organization/parent"].each { |parent|  companies << parent['parent'] } if resource
+      results["company"][:description] = self.get_description(self.get_id(company_name))
+
+      parents = FreebaseAPI.session.mqlread({:id => best_match.id, :'/organization/organization/parent' => [{ :parent => [] }] })
+      parents["/organization/organization/parent"].each_with_index do |parent, index|
+        results["parent"+(index+1).to_s] = {name: parent['parent'][0]}
+        puts "PARENT[parent] #{parent['parent']}"
+        results["parent"+(index+1).to_s][:description] = self.get_description(get_id(parent['parent'][0]))
+      end
+
     rescue
     end
-    companies.unshift(company_name)
-    companies
+    results
   end
 
   def self.search_articles ( query )
@@ -47,6 +54,17 @@ class ApplicationController < ActionController::Base
 
     formatted_result = result.to_hash.symbolize_keys[:results]
 
+  end
+
+  def self.get_description(id)
+    resource = FreebaseAPI::Topic.get(id)
+    resource.description
+  end
+
+  def self.get_id(company)
+    resource = FreebaseAPI::Topic.search(company)
+    best_match = resource.values.first
+    best_match.id
   end
 
 end
