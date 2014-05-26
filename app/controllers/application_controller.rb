@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
           results["company"][:certifications] = "None"
         end
       elsif key.to_s.match("parent")
-        results[key][:nyt] = self.search_articles(value[:name][0])
+        results[key][:nyt] = self.search_articles(value[:name])
         begin
           results[key][:certifications] = Company.where("name like ?", "%#{company}%").first.certificates.pluck(:name)
         rescue
@@ -28,19 +28,22 @@ class ApplicationController < ActionController::Base
     results = {"company" => { name: company_name }}
     resource = FreebaseAPI::Topic.search(company_name)
     best_match = resource.values.first
+    results[:industry] = best_match.as_json["data"]["property"]["/common/topic/notable_for"]["values"][0]["text"]
     id = best_match.id
     begin
+
       results["company"][:description] = self.get_description(self.get_id(company_name))
 
       parents = FreebaseAPI.session.mqlread({:id => best_match.id, :'/organization/organization/parent' => [{ :parent => [] }] })
+
       parents["/organization/organization/parent"].each_with_index do |parent, index|
         results["parent"+(index+1).to_s] = {name: parent['parent'][0]} unless parent['parent'][0] == company_name
-        puts "PARENT[parent] #{parent['parent']}"
-        results["parent"+(index+1).to_s][:description] = self.get_description(get_id(parent['parent'][0]))
+        results["parent"+(index+1).to_s][:description] = self.get_description(get_id(parent['parent'][0])) unless parent['parent'][0] == company_name
       end
 
     rescue
     end
+
     results
   end
 
