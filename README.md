@@ -29,7 +29,7 @@ Work in progress.
 
 
 ####Catch us on Twitter!
-[@tyleraadams](twitter.com/tyleraadams)
-[@keatycodes](twitter.com/keatycodes)
-[@adam_godel](twitter.com/adam_godel)
-[@julia_himmel](twitter.com/julia_himmel)
+* [@tyleraadams](http://twitter.com/tyleraadams)
+* [@keatycodes](http://twitter.com/keatycodes)
+* [@adam_godel](http://twitter.com/adam_godel)
+* [@julia_himmel](twitter.com/julia_himmel)
