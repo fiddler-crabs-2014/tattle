@@ -8,28 +8,28 @@ Ever wondered who is really making that beverage you are drinking or that chapst
 * Fork our repository
 * Clone your fork
 * run 
-  * bundle
-  * rake db:create
-  * rake db:migrate
-  * rake db:seed
-  * rails s
+  * ```bundle```
+  * ```rake db:create```
+  * ```rake db:migrate```
+  * ```rake db:seed```
+  * ```rails s```
 * Open your localhost in a webbrowser and start searching.
 * Or visit our herokuapp page! [deployed app](http://gentle-beyond-4938.herokuapp.com/)
 ####How to contribute:
 
- >> to the knowledge base
-
- >> to the code base
+#####to the knowledge base
+Work in progress.
+#####to the code base
 * Fork the project
-* Git clone
-* Git add upstream master https://github.com/fiddler-crabs-2014/tattle.git
-* Make a new branch describing the feature, test or chore you are adding or editing, eg git checkout -b feature/search
+* ```Git clone``` your forked repository
+* ```Git add upstream master https://github.com/fiddler-crabs-2014/tattle.git```
+* Make a new branch describing the feature, test or chore you are adding or editing, eg ```git checkout -b feature/search```
 * Make one or more well commented and clean commits to your fork.
 * Perform a pull request to the upstream master repository for review.
 
 
 ####Catch us on Twitter!
-@tyleraadams
-@keatycodes
-@adam_godel
-@julia_himmel
+[@tyleraadams](twitter.com/tyleraadams)
+[@keatycodes](twitter.com/keatycodes)
+[@adam_godel](twitter.com/adam_godel)
+[@julia_himmel](twitter.com/julia_himmel)
