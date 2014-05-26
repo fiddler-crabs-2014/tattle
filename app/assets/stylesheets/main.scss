@@ -13,7 +13,7 @@ $condensed-sans: "museo-sans-condensed", sans-serif;
 $reg-sans: "museo-sans", sans-serif;
 
 body {
-  /*background-image: url(image-path('conscious_consumer_bar_code.png'));*/
+  background: #eee;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -176,7 +176,7 @@ input[type="text"] {
 
 @media all and (max-width: 699px) and (min-width: 520px), (min-width: 1151px) {
   body {
-    background: #ccc;
+
   }
 }
 
