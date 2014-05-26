@@ -39,6 +39,7 @@ group :test do
   gem 'capybara'
   gem 'selenium-webdriver'
   gem 'database_cleaner'
+  gem 'debugger'
   gem 'debugger-ruby_core_source'
   gem 'json_spec'
 end
