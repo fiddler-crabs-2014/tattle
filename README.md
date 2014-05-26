@@ -32,6 +32,6 @@ Work in progress.
 
 ####Catch us on Twitter!
 * [@tyleraadams](http://twitter.com/tyleraadams)
-* [@keatycodes](http://twitter.com/keatycodes)
-* [@adam_godel](http://twitter.com/adam_godel)
+* [@keatycodes](http://twitter.com/keatycodes) (product manager)
+* [@adam_godel](http://twitter.com/adam_godel) (technical lead)
 * [@julia_himmel](twitter.com/julia_himmel)
