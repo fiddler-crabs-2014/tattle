@@ -6,4 +6,4 @@ rvm:
 script: bundle exec rspec spec
 
 before_script:
-  - psql -c 'create database tattle_test;' -U postgres
+  - psql -c 'create database conscious_test;' -U postgres
