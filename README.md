@@ -14,7 +14,9 @@ Ever wondered who is really making that beverage you are drinking or that chapst
   * ```rake db:seed```
   * ```rails s```
 * Open your localhost in a webbrowser and start searching.
-* Or visit our herokuapp page! [deployed app](http://gentle-beyond-4938.herokuapp.com/)
+* Or visit our herokuapp page! 
+  * [deployed app](http://gentle-beyond-4938.herokuapp.com/)
+
 ####How to contribute:
 
 #####to the knowledge base
