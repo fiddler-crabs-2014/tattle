@@ -2,15 +2,28 @@ require 'spec_helper'
 
 describe ApplicationController do 
   describe "#generate_results" do 
-    before(:all) do
-      @results = ApplicationController.generate_results("Burt's Bees")
+    context "has a parent company with no certifications" do 
+      before(:all) do
+        @results = ApplicationController.generate_results("Burt's Bees")
+      end
+
+      context "has a parent company" do
+
+        it { @results.should be_a_kind_of(Hash) }
+        
+        it { @results.should_not be_empty }
+
+        it { @results["parent1"][:name].should include("Clorox")}
+      end
+
+      context "has no certifications" do 
+        it { @results["parent1"][:certifications].should include("None")}      
+      end
     end
 
-    it { @results.should be_a_kind_of(Hash) }
-    
-    it { @results.should_not be_empty }
-    
   end
+
+
 
   describe "#freebase_search" do 
     before(:all) do 
