@@ -3,9 +3,9 @@ require 'open-uri'
 class Certificate < ActiveRecord::Base
   has_many :certifications
   has_many :companies, :through => :certifications
-  
+
   def self.ftf_get_certs
-    path = File.join(Rails.root, "config", "ftf_members.html")
+    path = File.join(Rails.root, "db", "ftf_members.html")
     page = Nokogiri::HTML(open(path))
 
     body = "Fair Trade Federation"
