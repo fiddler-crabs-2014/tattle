@@ -17,8 +17,10 @@ class ApplicationController < ActionController::Base
           results["company"][:certifications] = nil
         end
       #elsif key.to_s.match("parent")
-        results["parents"].each do |parent|
-          parent[:nyt] = self.make_query(parent[:name]) if parent[:name]
+        if results["parents"]
+          results["parents"].each do |parent|
+            parent[:nyt] = self.make_query(parent[:name]) if parent[:name]
+          end
         end
         begin
           parent[:certifications] = Company.where("name like ?", "%#{parent[:name]}%").first.certificates.pluck(:name)
