@@ -8,27 +8,29 @@ class ApplicationController < ActionController::Base
   private
   def self.generate_results(company_name)
    results = self.freebase_search(company_name)
-    results.each do |key, value|
-      if key == "company"
+    #results.each do |key, value|
+      #if key == "company"
         results["company"][:nyt] = self.make_query(company_name)
         begin
           results["company"][:certifications] = Company.where("name like ?", "%#{company_name}%").first.certificates.pluck(:name)
         rescue
           results["company"][:certifications] = nil
         end
-      elsif key.to_s.match("parent")
-        results[key][:nyt] = self.make_query(value[:name]) if value[:name]
+      #elsif key.to_s.match("parent")
+        results["parents"].each do |parent|
+          parent[:nyt] = self.make_query(parent[:name]) if parent[:name]
+        end
         begin
-          results[key][:certifications] = Company.where("name like ?", "%#{value[:name]}%").first.certificates.pluck(:name)
+          parent[:certifications] = Company.where("name like ?", "%#{parent[:name]}%").first.certificates.pluck(:name)
         rescue
         end
-      end
-    end
+      # end
+    # end
     results
   end
 
   def self.freebase_search(company_name)
-    results = {"company" => { name: company_name }}
+    results = {"company" => { name: company_name }, "parents" =>[] }
     resource = FreebaseAPI::Topic.search(company_name)
     best_match = resource.values.first
     results[:industry] = best_match.as_json["data"]["property"]["/common/topic/notable_for"]["values"][0]["text"]
@@ -40,8 +42,8 @@ class ApplicationController < ActionController::Base
       parents = FreebaseAPI.session.mqlread({:id => best_match.id, :'/organization/organization/parent' => [{ :parent => [] }] })
 
       parents["/organization/organization/parent"].each_with_index do |parent, index|
-        results["parent"+(index+1).to_s] = {name: parent['parent'][0]} unless parent['parent'][0] == company_name || parent['parent'][0] == nil
-        results["parent"+(index+1).to_s][:description] = self.get_description(get_id(parent['parent'][0])) unless parent['parent'][0] == company_name || parent['parent'][0] == nil
+        results["parents"] << { "parent"+(index+1).to_s => {name: parent['parent'][0], description: self.get_description(get_id(parent['parent'][0]))}} unless parent['parent'][0] == company_name || parent['parent'][0] == nil
+        #results["parent"+(index+1).to_s][:description] = self.get_description(get_id(parent['parent'][0])) unless parent['parent'][0] == company_name || parent['parent'][0] == nil
       end
 
     rescue
@@ -64,7 +66,7 @@ class ApplicationController < ActionController::Base
   def self.format_response(results)
     results.to_hash.symbolize_keys[:response]
   end
-  
+
   def self.make_query(query)
     response = HTTParty.get(self.create_query(query))
     self.format_response(response)
