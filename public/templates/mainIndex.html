@@ -5,9 +5,9 @@
       <p class="category c-subhead">your search</p>
     </div>
     <div class="grid_2">
-      <p class="no_margin">{{company_info.company.description}}</p>
+      <p class="no_margin content-collapsed" ng-class="expanded ? 'content-expanded' : 'content-collapsed'">{{company_info.company.description}}</p>
     </div>
-
+    <div class="grid_3"><button class="contentToggle" ng-click="expanded = !expanded">toggle</button></div>
 </div>
 
 <div ng-repeat="parent in company_info.parents">
