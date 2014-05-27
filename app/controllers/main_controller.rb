@@ -11,4 +11,7 @@ class MainController < ApplicationController
     end
   end
 
+  def children
+  end
+
 end
