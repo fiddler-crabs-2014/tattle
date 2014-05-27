@@ -10,14 +10,14 @@ class ApplicationController < ActionController::Base
    results = self.freebase_search(company_name)
     results.each do |key, value|
       if key == "company"
-        results["company"][:nyt] = self.make_query(company_name)
+        results["company"][:nyt] = self.fetch_articles(company_name)
         begin
           results["company"][:certifications] = Company.where("name like ?", "%#{company_name}%").first.certificates.pluck(:name)
         rescue
           results["company"][:certifications] = nil
         end
       elsif key.to_s.match("parent")
-        results[key][:nyt] = self.make_query(value[:name]) if value[:name]
+        results[key][:nyt] = self.fetch_articles(value[:name]) if value[:name]
         begin
           results[key][:certifications] = Company.where("name like ?", "%#{value[:name]}%").first.certificates.pluck(:name)
         rescue
@@ -52,22 +52,25 @@ class ApplicationController < ActionController::Base
 
 
   #####TIMES SEARCH
-  def self.format_search(query)
-    query.chomp!(" co")
-    query_formatted = query.gsub(" ", "+")
-  end
 
-  def self.create_query(query)
-    return ("http://api.nytimes.com/svc/search/v2/articlesearch.json?&fq=document_type:(article)+AND+subject.contains:(Environment+Obesity+Rights+Labor+Cruelty)+AND+organizations.contains:(" + self.format_search(query) + ")&fl=headline,web_url&api-key=9f7876895414dc78acc8fe1c9a0dbd03:16:63558649")
-  end
+  # def self.format_search(query)
+  #   query.chomp!(" co")
+  #   query_formatted = query.gsub(" ", "+")
+  # end
 
-  def self.format_response(results)
-    results.to_hash.symbolize_keys[:response]
-  end
+  # def self.create_query(query)
+  #   return ("http://api.nytimes.com/svc/search/v2/articlesearch.json?&fq=document_type:(article)+AND+subject.contains:(Environment+Obesity+Rights+Labor+Cruelty)+AND+organizations.contains:(" + self.format_search(query) + ")&fl=headline,web_url&api-key=9f7876895414dc78acc8fe1c9a0dbd03:16:63558649")
+  # end
+
+  # def self.format_response(results)
+  #   results.to_hash.symbolize_keys[:response]
+  # end
   
-  def self.make_query(query)
-    response = HTTParty.get(self.create_query(query))
-    self.format_response(response)
+  def self.fetch_articles(query)
+    nyt = NytimesMessenger.new
+    nyt.make_query(query)
+    # response = HTTParty.get(self.create_query(query))
+    # self.format_response(response)
   end
   #########
   # def self.search_articles ( query )
