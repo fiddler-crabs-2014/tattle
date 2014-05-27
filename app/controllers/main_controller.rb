@@ -14,8 +14,8 @@ class MainController < ApplicationController
   def children
     freebase = FreebaseService.new
     respond_to do |format|
-      format.html { render :json => { children: freebase.get_children_names(freebase.get_children_ids(params["company"]) } }
-      format.json { render :json => { children: freebase.get_children_names(freebase.get_children_ids(params["company"]) } }
+      format.html { render :json => { children: freebase.get_children_names(freebase.get_children_ids(params["company"])) } }
+      format.json { render :json => { children: freebase.get_children_names(freebase.get_children_ids(params["company"])) } }
     end
   end
 
