@@ -23,7 +23,6 @@ class ApplicationController < ActionController::Base
       parent[:certifications] = Company.where("name like ?", "%#{parent[:name]}%").first.certificates.pluck(:name)
     rescue
     results
-    end
   end
 
   def self.freebase_search(company_name)
