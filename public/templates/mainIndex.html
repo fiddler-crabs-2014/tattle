@@ -1,11 +1,38 @@
-<div ng-show="company_info.company" class="company-div">
-  <h2 ng-show="company_info.parent1" class="section-head">{{company_info.company.name}}'s parent company is {{company_info.parent1.name}}</h2>
-
-  <p ng-show="!company_info.parent1" class="section-head">{{company_info.company.name}} doesn't appear to have a parent company</p>
+<div ng-show="company_info.company" class="company-div clearfix">
+  <!-- <div ng-show="company_info.parent1"> -->
+    <div class="grid_1">
+      <p class="category">{{company_info.company.name}}</p>
+      <p class="category c-subhead">your search</p>
+    </div>
+    <div class="grid_2">
+      <p class="no_margin">{{company_info.company.description}}</p>
+    </div>
+  <!-- </div> -->
 </div>
 
-<div ng-show="company_info.parent1.name" class="company-div">
-  <p class="section-head">{{company_info.parent1.name}}</p>
+<div ng-repeat="parent in company_info" ng-class="{hidden: $first}" >
+
+  <div ng-show="company_info.company" class="company-div clearfix">
+    <div ng-show="parent.name">
+      <div class="grid_1">
+        <p class="category">{{parent.name}}</p>
+        <p class="category c-subhead">parent company</p>
+      </div>
+      <div class="grid_2">
+        <p class="no_margin">{{parent.description}}</p>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<div ng-show="company_info">
+  <div ng-show="!company_info.parent1" class="company-div clearfix">
+    <h2 class="section-head">
+      {{company_info.company.name}} doesn't appear to have a parent company
+    </h2>
+  </div>
 </div>
 
 <div ng-show="company_info.parent1.nyt" class="company-div">
@@ -13,4 +40,16 @@
   <p ng-repeat="article in company_info.parent1.nyt">
     <a href="{{article.url}}" target="_blank">{{article.title}}</a>
   </p>
+</div>
+
+<div ng-show="company_info.company.certifications" class="company-div clearfix">
+  <div ng-repeat="certification in company_info.company.certifications">
+      <div class="grid_1">
+        <p class="category">{{certification}}</p>
+        <p class="category c-subhead">certification</p>
+      </div>
+      <div class="grid_2">
+        <p class="no_margin">Certification details coming soon.</p>
+      </div>
+  </div>
 </div>
