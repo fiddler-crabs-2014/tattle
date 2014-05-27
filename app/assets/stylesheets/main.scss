@@ -1,16 +1,16 @@
 /*colors*/
 
-$red: #cf4627;
-$unselected-red: #ebb1a7;
-$blue: #3498db;
-$intro-color: #5f6062;
-$body-color: #48484a;
+$aquamarine: rgb(116, 201, 148);
+$light-aquamarine: rgb(234,247,239); /*(background for a section)*/
+$yellow-white: rgb(252, 251, 228); /*(background for a section, also color of type on search button and app name)*/
+$dark-blue: rgb(29, 99, 135); /*(for search button)*/
+$light-blue: rgb(192,232,210); /*(for search bar)*/
+$greeny-gray: rgb(95, 115, 119); /*(for type and icons)*/
 
 /*fonts*/
 
-$serif-font: "chaparral-pro", serif;
-$condensed-sans: "museo-sans-condensed", sans-serif;
-$reg-sans: "museo-sans", sans-serif;
+$chaparral-pro: "chaparral-pro", serif;
+$museo-sans: "museo-sans", sans-serif;
 
 body {
   background: #eee;
@@ -23,7 +23,7 @@ body {
 /*TYPOGRAPHY*/
 
 p {
-	font-family: $serif-font;
+	font-family: $chaparral-pro;
 	color: $body-color;
 	font-weight: 400;
 }
@@ -34,28 +34,25 @@ a {
 }
 
 #intro {
-	font-family: $serif-font;
-	font-weight: 400;
-	color: $intro-color;
-	line-height: 114%;
+	font-family: $museo-sans;
+	font-weight: 100;
+	color: $yellow-white;
+	/*line-height: 114%;
 	font-size: 2.5em;
-	margin: 18px 0;
+	margin: 18px 0;*/
 }
 
 #title {
 
-	font-family: $condensed-sans;
-	color: $red;
-	font-weight: 700;
-	text-transform: uppercase;
-	font-size: 1.6em;
-	letter-spacing: 0.1em;
-
+	font-family: $chaparral-pro;
+	color: $yellow-white;
+	font-weight: 400;
+	/*font-size: 1.6em;*/
 }
 
 .category {
-	font-family: $condensed-sans;
-	color: $red;
+	font-family: $museo-sans;
+	color: $greeny-gray;
 	font-weight: 700;
 	text-transform: uppercase;
 	font-size: 1.5em;
