@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   private
   def self.generate_results(company_name)
     results = self.freebase_search(company_name)
-    results["company"][:nyt] = self.make_query(company_name)
+    results["company"][:nyt] = self.fetch_articles(company_name)
     begin
       results["company"][:certifications] = Company.where("name like ?", "%#{company_name}%").first.certificates.pluck(:name)
     rescue
@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
     end
     if results["parents"]
       results["parents"].each do |parent|
-        parent[:nyt] = self.make_query(parent[:name]) if parent[:name]
+        parent[:nyt] = self.fetch_articles(parent[:name]) if parent[:name]
       end
     end
     begin
@@ -24,7 +24,6 @@ class ApplicationController < ActionController::Base
     rescue
     end
     results
-    end
   end
 
   def self.freebase_search(company_name)
