@@ -1,5 +1,5 @@
 <div ng-show="company_info.company" class="company-div clearfix">
-  <!-- <div ng-show="company_info.parent1"> -->
+
     <div class="grid_1">
       <p class="category">{{company_info.company.name}}</p>
       <p class="category c-subhead">your search</p>
@@ -7,10 +7,10 @@
     <div class="grid_2">
       <p class="no_margin">{{company_info.company.description}}</p>
     </div>
-  <!-- </div> -->
+
 </div>
 
-<div ng-repeat="parent in company_info" ng-class="{hidden: $first}" >
+<div ng-repeat="parent in company_info.parents">
 
   <div ng-show="company_info.company" class="company-div clearfix">
     <div ng-show="parent.name">
@@ -28,18 +28,24 @@
 </div>
 
 <div ng-show="company_info">
-  <div ng-show="!company_info.parent1" class="company-div clearfix">
+  <div ng-show="!company_info.parents" class="company-div clearfix">
     <h2 class="section-head">
       {{company_info.company.name}} doesn't appear to have a parent company
     </h2>
   </div>
 </div>
 
-<div ng-show="company_info.parent1.nyt" class="company-div">
+<div ng-show="company_info.company" class="company-div">
   <p class="category">Articles we think you might like:</p>
-  <p ng-repeat="article in company_info.parent1.nyt">
-    <a href="{{article.url}}" target="_blank">{{article.title}}</a>
+  <p ng-repeat="article in company_info.company.nyt.docs">
+    <a href="{{article.web_url}}" target="_blank">{{article.headline.main}}</a>
   </p>
+
+  <div ng-repeat="parent in company_info.parents">
+    <p ng-repeat="article in parent.nyt.docs">
+      <a href="{{article.web_url}}" target="_blank">{{article.headline.main}}</a>
+    </p>
+  </div>
 </div>
 
 <div ng-show="company_info.company.certifications" class="company-div clearfix">
