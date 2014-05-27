@@ -8,7 +8,6 @@ $body-color: #48484a;
 
 /*fonts*/
 
-/*$serif-font: "Roboto Slab", serif;*/
 $serif-font: "chaparral-pro", serif;
 $condensed-sans: "museo-sans-condensed", sans-serif;
 $reg-sans: "museo-sans", sans-serif;
@@ -27,7 +26,6 @@ p {
 	font-family: $serif-font;
 	color: $body-color;
 	font-weight: 400;
-	/*font-size: ;*/
 }
 
 a {
@@ -42,8 +40,6 @@ a {
 	line-height: 114%;
 	font-size: 2.5em;
 	margin: 18px 0;
-	/* letter-spacing: ;*/
-
 }
 
 #title {
@@ -94,6 +90,14 @@ a {
 
 .hidden {
 	display: none;
+}
+
+.content-expanded {
+	height: 100px;
+}
+
+.content-collapsed {
+	height: auto;
 }
 
 
@@ -150,11 +154,16 @@ input[type="text"] {
 	padding: 2em;
 	margin-top: 3%;
 	margin-bottom: 3%;
+	overflow: hidden;
 }
 
 .container {
 	width: 68%;
 	margin: auto;
+}
+
+.contentToggle {
+	float: right;
 }
 
 #black-line {
@@ -164,16 +173,19 @@ input[type="text"] {
 	width: 17%;
 }
 
-.grid_1 { width: 25%; }
-.grid_2 { width: 70%; }
-.grid_3 { width: 235px; }
-
 .grid_1,
 .grid_2,
 .grid_3 {
 	margin-right: 2%;
 	float: left;
 	display: block;
+}
+
+.grid_1 { width: 20%; }
+.grid_2 { width: 60%; }
+.grid_3 {
+	width: 10%;
+	margin-right: 0px;
 }
 
 .clear{clear:both;display:block;overflow:hidden;visibility:hidden;width:0;height:0}.clearfix:after{clear:both;content:' ';display:block;font-size:0;line-height:0;visibility:hidden;width:0;height:0}* html .clearfix,*:first-child+html .clearfix{zoom:1}
