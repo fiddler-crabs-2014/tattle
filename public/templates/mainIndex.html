@@ -19,8 +19,9 @@
         <p class="category c-subhead">parent company</p>
       </div>
       <div class="grid_2">
-        <p class="no_margin">{{parent.description}}</p>
+        <p class="no_margin content-collapsed" ng-class="expanded ? 'content-expanded' : 'content-collapsed'">{{parent.description}}</p>
       </div>
+      <div class="grid_3"><button class="contentToggle" ng-click="expanded = !expanded">toggle</button></div>
     </div>
 
   </div>
@@ -41,7 +42,7 @@
     <a href="{{article.web_url}}" target="_blank">{{article.headline.main}}</a>
   </p>
 
-  <div ng-repeat="parent in company_info.parents">
+  <div ng-repeat="parent in company_info.parents" >
     <p ng-repeat="article in parent.nyt.docs">
       <a href="{{article.web_url}}" target="_blank">{{article.headline.main}}</a>
     </p>
