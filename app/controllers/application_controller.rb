@@ -7,27 +7,22 @@ class ApplicationController < ActionController::Base
 
   private
   def self.generate_results(company_name)
-   results = self.freebase_search(company_name)
-    #results.each do |key, value|
-      #if key == "company"
-        results["company"][:nyt] = self.make_query(company_name)
-        begin
-          results["company"][:certifications] = Company.where("name like ?", "%#{company_name}%").first.certificates.pluck(:name)
-        rescue
-          results["company"][:certifications] = nil
-        end
-      #elsif key.to_s.match("parent")
-        if results["parents"]
-          results["parents"].each do |parent|
-            parent[:nyt] = self.make_query(parent[:name]) if parent[:name]
-          end
-        end
-        begin
-          parent[:certifications] = Company.where("name like ?", "%#{parent[:name]}%").first.certificates.pluck(:name)
-        rescue
-        end
-      # end
-    # end
+    results = self.freebase_search(company_name)
+    results["company"][:nyt] = self.make_query(company_name)
+    begin
+      results["company"][:certifications] = Company.where("name like ?", "%#{company_name}%").first.certificates.pluck(:name)
+    rescue
+      results["company"][:certifications] = nil
+    end
+    if results["parents"]
+      results["parents"].each do |parent|
+        parent[:nyt] = self.make_query(parent[:name]) if parent[:name]
+      end
+    end
+    begin
+      parent[:certifications] = Company.where("name like ?", "%#{parent[:name]}%").first.certificates.pluck(:name)
+    rescue
+    end
     results
   end
 
