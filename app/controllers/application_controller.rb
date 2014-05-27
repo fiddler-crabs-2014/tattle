@@ -42,7 +42,7 @@ class ApplicationController < ActionController::Base
         results["parents"] << {name: parent['parent'][0], description: self.get_description(get_id(parent['parent'][0]))} unless parent['parent'][0] == company_name || parent['parent'][0] == nil
         #results["parent"+(index+1).to_s][:description] = self.get_description(get_id(parent['parent'][0])) unless parent['parent'][0] == company_name || parent['parent'][0] == nil
     end
-
+    results["parents"].reverse!
     rescue
     end
 
