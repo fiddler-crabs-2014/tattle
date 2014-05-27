@@ -42,7 +42,7 @@ class ApplicationController < ActionController::Base
       parents = FreebaseAPI.session.mqlread({:id => best_match.id, :'/organization/organization/parent' => [{ :parent => [] }] })
 
       parents["/organization/organization/parent"].each_with_index do |parent, index|
-        results["parents"] << { "parent"+(index+1).to_s => {name: parent['parent'][0], description: self.get_description(get_id(parent['parent'][0]))}} unless parent['parent'][0] == company_name || parent['parent'][0] == nil
+        results["parents"] << {name: parent['parent'][0], description: self.get_description(get_id(parent['parent'][0]))} unless parent['parent'][0] == company_name || parent['parent'][0] == nil
         #results["parent"+(index+1).to_s][:description] = self.get_description(get_id(parent['parent'][0])) unless parent['parent'][0] == company_name || parent['parent'][0] == nil
       end
 
