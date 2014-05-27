@@ -17,7 +17,6 @@ class ApplicationController < ActionController::Base
         rescue
           results["company"][:certifications] = nil
         end
-
       elsif key.to_s.match("parent")
         results[key][:nyt] = self.fetch_articles(value[:name]) if value[:name]
         begin
