@@ -23,7 +23,9 @@ class ApplicationController < ActionController::Base
           parent[:certifications] = Company.where("name like ?", "%#{parent[:name]}%").first.certificates.pluck(:name)
         rescue
         end
+      end
     results
+    end
   end
 
   def self.freebase_search(company_name)
@@ -32,6 +34,7 @@ class ApplicationController < ActionController::Base
     best_match = resource.values.first
     results[:industry] = best_match.as_json["data"]["property"]["/common/topic/notable_for"]["values"][0]["text"]
     id = best_match.id
+    
     begin
 
       results["company"][:description] = self.get_description(self.get_id(company_name))
@@ -41,7 +44,7 @@ class ApplicationController < ActionController::Base
       parents["/organization/organization/parent"].each_with_index do |parent, index|
         results["parents"] << {name: parent['parent'][0], description: self.get_description(get_id(parent['parent'][0]))} unless parent['parent'][0] == company_name || parent['parent'][0] == nil
         #results["parent"+(index+1).to_s][:description] = self.get_description(get_id(parent['parent'][0])) unless parent['parent'][0] == company_name || parent['parent'][0] == nil
-      end
+    end
 
     rescue
     end
