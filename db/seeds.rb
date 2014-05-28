@@ -7,6 +7,10 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 #seed database data
-Certificate.ftf_get_certs
-Certificate.ftusa_get_certs
-Certificate.rainforest_alliance_get_certs
+
+scraper = ScraperService.new
+
+scraper.ftf_get_certs
+scraper.ftusa_get_certs
+scraper.rainforest_alliance_get_certs
+scraper.usda_organics
