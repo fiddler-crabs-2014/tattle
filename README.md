@@ -3,7 +3,7 @@ Tattle [![Build Status](https://travis-ci.org/fiddler-crabs-2014/tattle.svg?bran
 
 [deployed app](http://gentle-beyond-4938.herokuapp.com/)・[trello](https://trello.com/b/Je07GDzP/monday-mvp)・[travis ci](https://travis-ci.org/fiddler-crabs-2014/tattle)・[contact us](https://github.com/fiddler-crabs-2014/tattle.git/wiki/team)
 ####What the app is for:
-Ever wondered who is really making that beverage you are drinking or that chapstick you use? Tattle provides you the capability to find a brand or company. It identifies parent companies and controversies surrounding them. Tattle makes it easy to make ethical decisions regarding your choices as a consumer.
+Ever wondered who is really making that beverage you are drinking or that chapstick you use? Tattle provides you the capability to find who owns a brand or company and identifies any controversies surrounding them. We make it easy to make ethical decisions regarding your choices as a consumer.
 ####How to use it:
 * Fork our repository
 * Clone your fork
