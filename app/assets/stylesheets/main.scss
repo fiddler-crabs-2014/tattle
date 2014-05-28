@@ -9,7 +9,6 @@ $greeny-gray: rgb(95, 115, 119); /*(for type and icons)*/
 $dark-gray: rgb(84, 104, 108); /*(for mouseover)*/
 $darker-blue: rgb(23, 84, 115); /*(for mouseover on button)*/
 
-
 /*
  * Pulse animation
 */
@@ -38,7 +37,6 @@ $darker-blue: rgb(23, 84, 115); /*(for mouseover on button)*/
   -webkit-animation-timing-function: linear;
 }
 
-
 /*fonts*/
 
 $chaparral-pro: "chaparral-pro", serif;
@@ -63,16 +61,16 @@ a {
 }
 
 #tagline {
-	font-family: $museo-sans;
-	font-weight: 100;
-	color: $yellow-white;
-	font-size: 1.7em;
+  font-family: $museo-sans;
+  font-weight: 100;
+  color: $yellow-white;
+  font-size: 1.7em;
   text-align: center;
   margin: 0 0 10% 0;
 }
 
 .tagline-post-search {
-	margin: 0 0 5% 0!important;
+  margin: 0 0 5% 0!important;
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
 }
@@ -83,10 +81,10 @@ a {
 
 #title {
 
-	font-family: $chaparral-pro;
-	color: $yellow-white;
-	font-weight: 400;
-	font-size: 5em;
+  font-family: $chaparral-pro;
+  color: $yellow-white;
+  font-weight: 400;
+  font-size: 5em;
   text-align: center;
   margin: 0px;
   display: inline-block;
@@ -95,7 +93,7 @@ a {
 }
 
 #kern {
-	letter-spacing: -0.05em;
+  letter-spacing: -0.05em;
 }
 
 #logo {
@@ -106,20 +104,19 @@ a {
 
 .icon {
   float: left;
-  margin-right: 37px;
-  height: 85px;
+  max-width:100%;
 }
 
 .category {
-	font-family: $museo-sans;
-	color: $greeny-gray;
-	font-weight: 100;
-	font-size: 3.52em;
-	margin: 0 0 0.6em 0;
+  font-family: $museo-sans;
+  color: $greeny-gray;
+  font-weight: 100;
+  font-size: 3.52em;
+  margin: 0 0 0.6em 0;
 }
 
 .c-subhead {
-	text-transform: uppercase;
+  text-transform: uppercase;
   font-size: 0.9em;
   font-weight: 700;
   letter-spacing: 0.2em;
@@ -127,27 +124,27 @@ a {
 }
 
 .section-head {
-	font-family: $museo-sans;
-	color: $greeny-gray;
-	font-weight: 100;
-	/*	font-size: ;
-	letter-spacing: ;*/
+  font-family: $museo-sans;
+  color: $greeny-gray;
+  font-weight: 100;
 }
 
 .section-subhead {
-	font-family: $museo-sans;
-	color: $greeny-gray;
-	font-weight: 700;
-	/*	font-size: ;
-	letter-spacing: ;*/
+  font-family: $museo-sans;
+  color: $greeny-gray;
+  font-weight: 700;
+}
+
+.nyt-headline {
+  font-weight: 600;
 }
 
 .hidden {
-	display: none;
+  display: none;
 }
 
 .content-collapsed {
-	max-height: 68px;
+  max-height: 68px;
   overflow: hidden;
   margin: 0;
   line-height: 1.4em;
@@ -213,6 +210,19 @@ input[type="text"] {
 	padding-left: 1%;
 }
 
+.child-searches {
+  display: inline-block;
+}
+
+button.child-search {
+  background-color: #fcfbe4;
+  border-radius: 3px;
+  border: 1px solid buttonface;
+  font-family: $museo-sans;
+  color: $greeny-gray;
+  font-weight: 100;
+}
+
 /*DIVS*/
 
 #header {
@@ -220,6 +230,7 @@ input[type="text"] {
 }
 
 #landing {
+  position: relative;
   width: 100%;
   height: 100%;
   background: $aquamarine;
@@ -242,15 +253,10 @@ input[type="text"] {
 }
 
 .landing-content-post-search {
-  top: 30%!important;
+  top: 50%!important;
+  margin-top: -145px!important;
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
-}
-
-.company-div {
-	padding: 2em;
-  margin: 0 auto;
-  width: 70%;
 }
 
 #news {
@@ -261,8 +267,9 @@ input[type="text"] {
   background-color: $light-aquamarine;
 }
 
-.contentToggle {
+.content-toggle {
 	float: right;
+  cursor: pointer;
 }
 
 .column_left,
@@ -272,7 +279,12 @@ input[type="text"] {
 	display: block;
 }
 
-.column_left { width: 12%; }
+.column_left {
+  width: 10%;
+  margin-right: 5%;
+  margin-top: 2%;
+}
+
 .column_main {
 	width: 75%;
 	margin-right: 0px;
