@@ -20,6 +20,7 @@ class ApplicationController < ActionController::Base
         parent[:certifications] = certs_info(parent[:name])
       end
     end
+    capitalize_headlines(results[:nyt])
     results
   end
 
@@ -36,6 +37,13 @@ class ApplicationController < ActionController::Base
       company.certificates
     else
       ["This company has no certifications"]
+    end
+  end
+
+  def capitalize_headlines(nyt_results)
+    puts "NYT RESULTS: #{nyt_results}"
+    nyt_results.each do |result|
+      result["headline"]["main"].capitalize!
     end
   end
 
