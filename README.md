@@ -1,4 +1,7 @@
-Tattle [![Build Status](https://travis-ci.org/fiddler-crabs-2014/tattle.svg?branch=master)](https://travis-ci.org/fiddler-crabs-2014/ConsciousConsumer)
+##Tattle
+
+[![Build Status](https://circleci.com/gh/fiddler-crabs-2014/tattle.png?circle-token=e4dd1a500a7424120be3d7ee3e79de5a7e02021f)](https://circleci.com/gh/fiddler-crabs-2014/tattle/1)
+
 =================
 
 [deployed app](http://gentle-beyond-4938.herokuapp.com/)・[trello](https://trello.com/b/Je07GDzP/monday-mvp)・[travis ci](https://travis-ci.org/fiddler-crabs-2014/tattle)・[contact us](https://github.com/fiddler-crabs-2014/tattle.git/wiki/team)
