@@ -1,10 +1,11 @@
 class NytimesMessenger
-  def format_search(company_name)
-    query.chomp("co").chomp(" ").chomp(" company").gsub("the ", "").gsub(" ", "+AND+").tr( "ÀÁÂÃÄÅàáâãäåĀāĂăĄąÇçĆćĈĉĊċČčÐðĎďĐđÈÉÊËèéêëĒēĔĕĖėĘęĚěĜĝĞğĠġĢģĤĥĦħÌÍÎÏìíîïĨĩĪīĬĭĮįİıĴĵĶķĸĹĺĻļĽľĿŀŁłÑñŃńŅņŇňŉŊŋÒÓÔÕÖØòóôõöøŌōŎŏŐőŔŕŖŗŘřŚśŜŝŞşŠšſŢţŤťŦŧÙÚÛÜùúûüŨũŪūŬŭŮůŰűŲųŴŵÝýÿŶŷŸŹźŻżŽž", "AAAAAAaaaaaaAaAaAaCcCcCcCcCcDdDdDdEEEEeeeeEeEeEeEeEeGgGgGgGgHhHhIIIIiiiiIiIiIiIiIiJjKkkLlLlLlLlLlNnNnNnNnnNnOOOOOOooooooOoOoOoRrRrRrSsSsSsSssTtTtTtUUUUuuuuUuUuUuUuUuUuWwYyyYyYZzZzZz")
+
+  def format_search(query)
+    query.chomp("co").chomp(" Co").chomp(" Company").gsub(":", "").gsub("The ", "").gsub(" ", "+AND+").tr( "ÀÁÂÃÄÅàáâãäåĀāĂăĄąÇçĆćĈĉĊċČčÐðĎďĐđÈÉÊËèéêëĒēĔĕĖėĘęĚěĜĝĞğĠġĢģĤĥĦħÌÍÎÏìíîïĨĩĪīĬĭĮįİıĴĵĶķĸĹĺĻļĽľĿŀŁłÑñŃńŅņŇňŉŊŋÒÓÔÕÖØòóôõöøŌōŎŏŐőŔŕŖŗŘřŚśŜŝŞşŠšſŢţŤťŦŧÙÚÛÜùúûüŨũŪūŬŭŮůŰűŲųŴŵÝýÿŶŷŸŹźŻżŽž", "AAAAAAaaaaaaAaAaAaCcCcCcCcCcDdDdDdEEEEeeeeEeEeEeEeEeGgGgGgGgHhHhIIIIiiiiIiIiIiIiIiJjKkkLlLlLlLlLlNnNnNnNnnNnOOOOOOooooooOoOoOoRrRrRrSsSsSsSssTtTtTtUUUUuuuuUuUuUuUuUuUuWwYyyYyYZzZzZz")
   end
 
   def create_query(query)
-    return ("http://api.nytimes.com/svc/search/v2/articlesearch.json?fq=organizations:(" + self.format_search(query) + ")+AND+document_type:(article)+AND+subject.contains:(Environment+Obesity+Labor+Cruelty)&fl=headline,web_url,pub_date,keywords&api-key=9f7876895414dc78acc8fe1c9a0dbd03:16:63558649")
+    return ("http://api.nytimes.com/svc/search/v2/articlesearch.json?fq=organizations.contains:(" + self.format_search(query) + ")+AND+document_type:(article)+AND+subject.contains:(Environment+Obesity+Labor+Cruelty)&fl=headline,web_url,pub_date,keywords&api-key=9f7876895414dc78acc8fe1c9a0dbd03:16:63558649")
   end
 
   def format_response(results)
