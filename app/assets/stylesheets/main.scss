@@ -43,6 +43,10 @@ h2#intro {
 	margin: 0 0 60px 0;
 }
 
+#loading {
+  display: none;
+}
+
 #title {
 
 	font-family: $chaparral-pro;
@@ -82,7 +86,7 @@ h2#intro {
   font-weight: 700;
   letter-spacing: 0.2em;
   margin-bottom: 0.6em;
- 
+
 
 }
 
