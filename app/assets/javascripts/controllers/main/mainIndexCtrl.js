@@ -6,8 +6,10 @@ this.IndexCtrl = function($scope, $location, $http) {
     var search_company = $('#myinput').val();
 
     var responsePromise = $http.get('/search', {params: {company: search_company}});
-
+      // console.log($(this));
     responsePromise.success(function(data) {
+      // console.log("inside success!")
+      // console.log($(this));
       console.log(data);
       $scope.company_info = data;
     });
