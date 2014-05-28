@@ -5,11 +5,11 @@ this.IndexCtrl = function($scope, $location, $http) {
 
     var search_company = $('#myinput').val();
 
-    var responsePromise = $http.get('/search', {params: {company: search_company}});
+    var response = $http.get('/search', {params: {company: search_company}});
 
     $('#logo').addClass('pulse');
 
-    responsePromise.success(function(data) {
+    response.success(function(data) {
       console.log(data);
       $scope.company_info = data;
       $("#landing").addClass('landing-post-search');
@@ -18,7 +18,7 @@ this.IndexCtrl = function($scope, $location, $http) {
       $('#logo').removeClass('pulse');
     });
 
-    responsePromise.error(function() {
+    response.error(function() {
       alert("No, not that one. Try a different one.");
     });
 
@@ -26,14 +26,13 @@ this.IndexCtrl = function($scope, $location, $http) {
 
 
   $scope.searchSubsidiary = function(child) {
+    var response = $http.get('/search', {params: {company: child}});
 
-    var responsePromise = $http.get('/search', {params: {company: child}});
-
-    responsePromise.success(function(data) {
+    response.success(function(data) {
       $scope.company_info = data;
     });
 
-    responsePromise.error(function() {
+    response.error(function() {
       alert("No, not that one. Try a different one.");
     });
 
@@ -41,16 +40,26 @@ this.IndexCtrl = function($scope, $location, $http) {
 
   $scope.viewChildren = function(company, index) {
 
-    var parent_company = company;
+    var response = $http.get('/children', {params: {company: company}});
 
-    var responsePromise = $http.get('/children', {params: {company: parent_company}});
-
-    responsePromise.success(function(data) {
-      $scope.company_info.parents[index].children_info = data;
+    response.success(function(data) {
+      if (index === 'na') {
+        $scope.company_info.children_info = data;
+        console.log('$scope.company_info.children_info is: ');
+        console.log($scope.company_info.children_info);
+      } else {
+        $scope.company_info.parents[index].children_info = data;
+        console.log('$scope.company_info.parents[index].children_info is: ');
+        console.log($scope.company_info.parents[index].children_info);
+      };
     });
 
-    responsePromise.error(function() {
-      alert("No, not that one. Try a different one.");
+    response.error(function() {
+      if (index === 'na') {
+        $scope.company_info.children_info = { children: ['no children'] };
+      } else {
+        $scope.company_info.parents[index].children_info = { children: ['no children'] };
+      };
     });
   };
 
