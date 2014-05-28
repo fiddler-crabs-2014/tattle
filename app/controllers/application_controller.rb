@@ -5,20 +5,13 @@ class ApplicationController < ActionController::Base
 
   private
   def generate_results(company_name)
-
     freebase = FreebaseService.new(company_name)
     results = freebase.search(company_name)
 
     results[:nyt] = fetch_articles(company_name)
     results["company"][:certifications] = certs_info(company_name)
 
-    if results["parents"]
-      results["parents"].each do |parent|
-        results[:nyt] += fetch_articles(parent[:name]) if parent[:name]
-        results[:nyt].uniq!
-        parent[:certifications] = certs_info(parent[:name])
-      end
-    end
+    results = process_parents(results)
     capitalize_headlines(results[:nyt])
     results
   end
@@ -33,6 +26,14 @@ class ApplicationController < ActionController::Base
   end
 
   def process_parents(results)
+    if results["parents"]
+      results["parents"].each do |parent|
+        results[:nyt] += fetch_articles(parent[:name]) if parent[:name]
+        results[:nyt].uniq!
+        parent[:certifications] = certs_info(parent[:name])
+      end
+    end
+    results
   end
 
   def fetch_certs(name)
