@@ -32,5 +32,14 @@ class Certificate < ActiveRecord::Base
     page.xpath('//div[2]/div[2]/div[3]/div/ul/li/a').each{ |element| @certificate.companies.create(name: element.text ) }
     page.xpath('//div[4]/div/ul/li/a').each{ |element| @certificate.companies.create(name: element.text ) }
   end
-
+  
+  def self.usda_organics
+    certificate = Certificate.create(body: "USDA", name: "USDA Certified Organic", category: "organic")
+    path = File.join(Rails.root, "db", "usda.xlsx")
+    workbook = RubyXL::Parser.parse(path)[0]
+    companies = []
+    workbook.extract_data.each {|entry| companies << entry[10]}
+    companies.uniq!
+    companies.each { |company| certificate.companies.create(name:company)}
+  end
 end

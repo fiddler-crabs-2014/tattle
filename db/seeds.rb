@@ -10,3 +10,4 @@
 Certificate.ftf_get_certs
 Certificate.ftusa_get_certs
 Certificate.rainforest_alliance_get_certs
+Certificate.usda_organics
