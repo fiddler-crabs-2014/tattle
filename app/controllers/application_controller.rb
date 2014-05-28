@@ -24,10 +24,11 @@ class ApplicationController < ActionController::Base
     rescue
     end
     results
+    end
   end
 
   def self.freebase_search(company_name)
-    results = {"company" => { name: company_name }, }
+    results = {"company" => { name: company_name } }
     resource = FreebaseAPI::Topic.search(company_name)
     best_match = resource.values.first
     results[:industry] = best_match.as_json["data"]["property"]["/common/topic/notable_for"]["values"][0]["text"]
@@ -40,10 +41,10 @@ class ApplicationController < ActionController::Base
       parents = FreebaseAPI.session.mqlread({:id => best_match.id, :'/organization/organization/parent' => [{ :parent => [] }] })
       results["parents"] = [] if parents["/organization/organization/parent"]
       parents["/organization/organization/parent"].each_with_index do |parent, index|
-        results["parents"] << {name: parent['parent'][0], description: self.get_description(get_id(parent['parent'][0]))} unless parent['parent'][0] == company_name || parent['parent'][0] == nil
+      results["parents"] << {name: parent['parent'][0], description: self.get_description(get_id(parent['parent'][0]))} unless parent['parent'][0] == company_name || parent['parent'][0] == nil
         #results["parent"+(index+1).to_s][:description] = self.get_description(get_id(parent['parent'][0])) unless parent['parent'][0] == company_name || parent['parent'][0] == nil
     end
-    results["parents"].reverse!
+
     rescue
     end
 

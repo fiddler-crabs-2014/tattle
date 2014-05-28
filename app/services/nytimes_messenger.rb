@@ -1,11 +1,11 @@
 class NytimesMessenger
   def format_search(query)
     query.chomp!(" co")
-    query_formatted = query.gsub(" ", "+AND+")
+    query.gsub(" ", "+AND+")
   end
 
   def create_query(query)
-    return ("http://api.nytimes.com/svc/search/v2/articlesearch.json?fq=" + self.format_search(query) + "+AND+document_type:(article)+AND+subject.contains:(Environment+Obesity+Rights+Labor+Cruelty)&fl=headline,web_url,pub_date,keywords&api-key=9f7876895414dc78acc8fe1c9a0dbd03:16:63558649")
+    return ("http://api.nytimes.com/svc/search/v2/articlesearch.json?fq=organizations:(" + self.format_search(query) + ")+AND+document_type:(article)+AND+subject.contains:(Environment+Obesity+Labor+Cruelty)&fl=headline,web_url,pub_date,keywords&api-key=9f7876895414dc78acc8fe1c9a0dbd03:16:63558649")
   end
 
   def format_response(results)
@@ -14,6 +14,7 @@ class NytimesMessenger
 
   def make_query(query)
     response = HTTParty.get(self.create_query(query))
+    ap response
     self.format_response(response)
   end
 end
