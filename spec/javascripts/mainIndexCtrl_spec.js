@@ -70,7 +70,7 @@
         // take care of the HTTP request
         $scope.$apply(function() {
             $scope.searchSubsidiary('Burt');
-            deferred.resolve({ company_info: "stuff goes here"});
+            deferred.resolve({ company_info: "stuff goes here "});
         });
 
         
