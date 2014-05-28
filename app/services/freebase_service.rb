@@ -14,5 +14,24 @@ class FreebaseService
     rescue
     end
   end
+
+  def get_resource(company_name)
+    FreebaseAPI::Topic.search(company_name)
+  end
+
+  def get_description(id)
+    resource = FreebaseAPI::Topic.get(id)
+    resource.description || "No Description Available for this company. "
+  end
+
+  def get_id(company)
+    resource = FreebaseAPI::Topic.search(company)
+    best_match = resource.values.first
+    best_match.id
+  end
+
+  def get_parents(best_match)
+    FreebaseAPI.session.mqlread({:id => best_match.id, :'/organization/organization/parent' => [{ :parent => [] }] })
+  end
 end
 
