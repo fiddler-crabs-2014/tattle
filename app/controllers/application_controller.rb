@@ -60,7 +60,6 @@ class ApplicationController < ActionController::Base
 
   def fetch_articles(query)
     nyt = NytimesMessenger.new
-
     nyt.make_query(query)
   end
 

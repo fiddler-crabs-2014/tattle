@@ -7,7 +7,7 @@ describe ApplicationController do
     context "has a parent company with no certifications" do
 
       before(:all) do
-        @results = ApplicationController.generate_results("Burt's Bees")
+        @results = generate_results("Burt's Bees")
       end
 
       context "has a parent company" do
@@ -16,7 +16,7 @@ describe ApplicationController do
 
         it { @results.should_not be_empty }
 
-        it { @results["parent1"][:name].should include("Clorox")}
+        it { @results["parents"][:name].should include("Clorox")}
       end
 
       context "has no certifications" do
