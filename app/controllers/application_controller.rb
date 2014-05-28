@@ -5,14 +5,27 @@ class ApplicationController < ActionController::Base
 
   private
   def generate_results(company_name)
-
     freebase = FreebaseService.new(company_name)
     results = freebase.search(company_name)
 
-    # results["company"][:nyt] = fetch_articles(company_name)
     results[:nyt] = fetch_articles(company_name)
     results["company"][:certifications] = certs_info(company_name)
 
+    results = process_parents(results)
+    capitalize_headlines(results[:nyt])
+    results
+  end
+
+  def certs_info(company_name)
+    certs = fetch_certs(company_name)
+    if certs
+      certs.map do |certification|
+        { name: certification.name, description: certification.description } unless certification.class == String
+      end
+    end
+  end
+
+  def process_parents(results)
     if results["parents"]
       results["parents"].each do |parent|
         results[:nyt] += fetch_articles(parent[:name]) if parent[:name]
@@ -20,15 +33,7 @@ class ApplicationController < ActionController::Base
         parent[:certifications] = certs_info(parent[:name])
       end
     end
-    capitalize_headlines(results[:nyt])
     results
-  end
-
-  def certs_info(company_name)
-    certs = fetch_certs(company_name)
-    certs.map do |certification|
-      { name: certification.name, description: certification.description } unless certification.class == String
-    end
   end
 
   def fetch_certs(name)
@@ -36,12 +41,11 @@ class ApplicationController < ActionController::Base
     if company
       company.certificates
     else
-      ["This company has no certifications"]
+      nil
     end
   end
 
   def capitalize_headlines(nyt_results)
-    puts "NYT RESULTS: #{nyt_results}"
     nyt_results.each do |result|
       result["headline"]["main"].capitalize!
     end
