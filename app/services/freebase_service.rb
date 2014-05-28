@@ -1,4 +1,7 @@
 class FreebaseService
+  def children(parent_name)
+    self.get_children_names(self.get_children_ids(parent_name))
+  end
   def get_children_ids(parent_name)
     children = FreebaseAPI.session.mqlread([{ name: parent_name, type: "/organization/organization", child: [{ id: nil }] }])
     children[0]["child"].map { |child| child["id"] }
