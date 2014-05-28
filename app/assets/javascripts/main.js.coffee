@@ -1,7 +1,7 @@
 #= require_directory ./controllers/main
 #= require_directory ./freebase
 
-CC = angular.module('CC', ['ngRoute'])
+CC = angular.module('CC', ['ngRoute', 'ngAnimate'])
 
 CC.config(['$routeProvider', ($routeProvider) ->
   $routeProvider.when('/results', { templateUrl: '/templates/mainResults.html', controller: 'ResultsCtrl' } )
