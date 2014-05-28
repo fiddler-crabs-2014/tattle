@@ -30,6 +30,7 @@ gem 'freebase-api'
 group :development, :test do
   gem 'rspec-rails'
   gem 'travis-lint'
+  gem 'jasmine-rails'
 end
 
 group :test do
