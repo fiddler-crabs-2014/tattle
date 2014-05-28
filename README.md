@@ -1,6 +1,6 @@
 Tattle [![Build Status](https://travis-ci.org/fiddler-crabs-2014/tattle.svg?branch=master)](https://travis-ci.org/fiddler-crabs-2014/ConsciousConsumer)
 
-https://circleci.com/gh/fiddler-crabs-2014/tattle.png?circle-token=:circle-token
+[![Build Status](https://circleci.com/gh/fiddler-crabs-2014/tattle.png?circle-token=:circle-token)
 
 =================
 
