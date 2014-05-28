@@ -12,13 +12,13 @@ $greeny-gray: rgb(95, 115, 119); /*(for type and icons)*/
 $chaparral-pro: "chaparral-pro", serif;
 $museo-sans: "museo-sans", sans-serif;
 
-body {
+/*body {
   background: $aquamarine;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-}
+}*/
 
 /*TYPOGRAPHY*/
 
@@ -157,6 +157,13 @@ input[type="text"] {
 }
 
 /*DIVS*/
+
+#page-top {
+  width: 100%;
+  background: $aquamarine;
+  padding-bottom: 20%;
+
+}
 
 #intro-div {
 	padding: 3em;
