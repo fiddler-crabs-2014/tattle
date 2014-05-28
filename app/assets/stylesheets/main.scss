@@ -33,14 +33,14 @@ a {
 	color: $greeny-gray;
 }
 
-#intro {
+h2#intro {
 	font-family: $museo-sans;
 	font-weight: 100;
 	color: $yellow-white;
-	line-height: 114%;
+	line-height: 200%;
 	font-size: 1.7em;
   text-align: center;
-	margin: 0 0 40px 0;
+	margin: 0 0 60px 0;
 }
 
 #title {
@@ -52,7 +52,14 @@ a {
   text-align: center;
   margin: 0px;
   display: inline-block;
-  
+  margin-left: 33.5%;
+
+}
+
+#logo {
+  margin: 0 6.5% 5.4% -1%;
+  height: 3.8em;
+
 }
 
 .category {
@@ -113,10 +120,6 @@ a {
 
 /*FORM ELEMENTS*/
 
-#myform {
-  width: 48%;
-  margin: auto;
-}
 
 #mybutton {
 	background-color: $dark-blue;
@@ -159,6 +162,8 @@ input[type="text"] {
 	padding: 3em;
 	margin-top: 7%;
 	margin-bottom: 3%;
+  width: 48%;
+  margin: auto;
 }
 
 .company-div {
