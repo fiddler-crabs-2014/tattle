@@ -1,62 +1,91 @@
-<div ng-show="company_info.company" class="company-div clearfix">
+<div ng-show="company_info.company" id="companies" class="clearfix">
+
+  <div id="company_content">
 
     <div class="grid_1">
-      <p class="category">{{company_info.company.name}}</p>
-      <p class="category c-subhead">your search</p>
+      <img alt="suitcase" src="/assets/tattle_suitcase.png" class="icon">
     </div>
+
     <div class="grid_2">
+      <p class="category c-subhead">your search</p>
+      <p class="category">{{company_info.company.name}}</p>
+      <button class="contentToggle" ng-click="expanded = !expanded">toggle</button>
       <p class="no_margin content-collapsed" ng-class="expanded ? 'content-expanded' : 'content-collapsed'">{{company_info.company.description}}</p>
     </div>
-    <div class="grid_3"><button class="contentToggle" ng-click="expanded = !expanded">toggle</button></div>
-</div>
 
-<div ng-repeat="parent in company_info.parents">
+    <div ng-show="company_info.parents" ng-repeat="parent in company_info.parents">
 
-  <div ng-show="company_info.company" class="company-div clearfix">
-    <div ng-show="parent.name">
-      <div class="grid_1">
-        <p class="category">{{parent.name}}</p>
-        <p class="category c-subhead">parent company</p>
+        <div class="grid_1">&nbsp;</div>
+
+        <div class="grid_2">
+          <p class="category c-subhead">parent company</p>
+          <p class="category">{{parent.name}}</p>
+          <button class="contentToggle" ng-click="expanded = !expanded">toggle</button></p>
+          <p class="content-collapsed" ng-class="expanded ? 'content-expanded' : 'content-collapsed'">{{parent.description}}</p>
+
+          <button ng-click="viewChildren(parent.name, $index)" id="parent.name">view {{parent.name}}'s other subsidiaries</button>
+
+          <div ng-repeat="child in parent.children_info.children">
+            <button ng-click="searchSubsidiary(child)" id="child">{{child}}</button>
+          </div>
+        </div>
+
+    </div>
+
+    <div ng-show="company_info">
+
+      <div class="grid_1">&nbsp;</div>
+
+      <div ng-show="!company_info.parents" class="grid_2">
+        <h2 class="section-head">
+          {{company_info.company.name}} doesn't appear to have a parent company
+        </h2>
       </div>
-      <div class="grid_2">
-        <p class="no_margin content-collapsed" ng-class="expanded ? 'content-expanded' : 'content-collapsed'">{{parent.description}}</p>
-      </div>
-      <div class="grid_3"><button class="contentToggle" ng-click="expanded = !expanded">toggle</button></div>
+
     </div>
 
   </div>
 
 </div>
 
-<div ng-show="company_info">
-  <div ng-show="!company_info.parents" class="company-div clearfix">
-    <h2 class="section-head">
-      {{company_info.company.name}} doesn't appear to have a parent company
-    </h2>
+<div ng-show="company_info.company" class="company-div news clearfix">
+
+  <div class="grid_1">
+    <img alt="nyt" src="/assets/tattle_nyt.png" class="icon">
   </div>
-</div>
 
-<div ng-show="company_info.company" class="company-div">
-  <p class="category">Articles we think you might like:</p>
-  <p ng-repeat="article in company_info.company.nyt.docs">
-    <a href="{{article.web_url}}" target="_blank">{{article.headline.main}}</a>
-  </p>
-
-  <div ng-repeat="parent in company_info.parents" >
-    <p ng-repeat="article in parent.nyt.docs">
+  <div class="grid_2">
+    <p class="category">Articles we think you might like:</p>
+    <p ng-repeat="article in company_info.company.nyt.docs">
       <a href="{{article.web_url}}" target="_blank">{{article.headline.main}}</a>
     </p>
+
+    <div ng-repeat="parent in company_info.parents" >
+      <p ng-repeat="article in parent.nyt.docs">
+        <a href="{{article.web_url}}" target="_blank">{{article.headline.main}}</a>
+      </p>
+    </div>
   </div>
+
 </div>
 
-<div ng-show="company_info.company.certifications" class="company-div clearfix">
-  <div ng-repeat="certification in company_info.company.certifications">
-      <div class="grid_1">
-        <p class="category">{{certification}}</p>
-        <p class="category c-subhead">certification</p>
-      </div>
-      <div class="grid_2">
-        <p class="no_margin">Certification details coming soon.</p>
-      </div>
+<div ng-show="company_info.company.certifications" class="company-div clearfix cert">
+
+  <div class="grid_1">
+    <img alt="ribbon" src="/assets/tattle_ribbon.png" class="icon">
   </div>
+
+  <div class="grid_2" ng-repeat="certification in company_info.company.certifications">
+
+    <div>
+      <p class="category c-subhead">certification</p>
+      <p class="category">{{certification}}</p>
+    </div>
+
+    <div>
+      <p>Certification details coming soon.</p>
+    </div>
+
+  </div>
+
 </div>
