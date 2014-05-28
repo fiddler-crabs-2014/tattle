@@ -65,7 +65,7 @@
 
 </div>
 
-<div ng-show="company_info.company" id="news" class="clearfix">
+<div ng-show="company_info.nyt" id="news" class="clearfix">
 
   <div class="results_content">
     <div class="column_left">
@@ -74,12 +74,9 @@
 
     <div class="column_main">
       <p class="category">Articles we think you might like:</p>
-      <p ng-repeat="article in company_info.company.nyt.docs">
-        <a href="{{article.web_url}}" target="_blank" class="nyt-headline">{{article.headline.main}}</a>
-      </p>
 
-      <div ng-repeat="parent in company_info.parents" >
-        <p ng-repeat="article in parent.nyt.docs">
+      <div ng-repeat="article in company_info.nyt" >
+        <p>
           <a href="{{article.web_url}}" target="_blank" class="nyt-headline">{{article.headline.main}}</a>
         </p>
       </div>
