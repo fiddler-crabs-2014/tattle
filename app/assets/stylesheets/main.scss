@@ -1,0 +1,217 @@
+/*colors*/
+
+$aquamarine: rgb(116, 201, 148);
+$light-aquamarine: rgb(234,247,239); /*(background for a section)*/
+$yellow-white: rgb(252, 251, 228); /*(background for a section, also color of type on search button and app name)*/
+$dark-blue: rgb(29, 99, 135); /*(for search button)*/
+$light-blue: rgb(192,232,210); /*(for search bar)*/
+$greeny-gray: rgb(95, 115, 119); /*(for type and icons)*/
+
+/*fonts*/
+
+$chaparral-pro: "chaparral-pro", serif;
+$museo-sans: "museo-sans", sans-serif;
+
+/*body {
+  background: $aquamarine;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}*/
+
+/*TYPOGRAPHY*/
+
+p {
+	font-family: $chaparral-pro;
+	color: $greeny-gray;
+	font-weight: 400;
+}
+
+a {
+	text-decoration: none;
+	color: $greeny-gray;
+}
+
+h2#intro {
+	font-family: $museo-sans;
+	font-weight: 100;
+	color: $yellow-white;
+	line-height: 200%;
+	font-size: 1.7em;
+  text-align: center;
+	margin: 0 0 60px 0;
+}
+
+#title {
+
+	font-family: $chaparral-pro;
+	color: $yellow-white;
+	font-weight: 400;
+	font-size: 5em;
+  text-align: center;
+  margin: 0px;
+  display: inline-block;
+  margin-left: 33.5%;
+
+}
+
+#logo {
+  margin: 0 6.5% 5.4% -1%;
+  height: 3.8em;
+
+}
+
+.category {
+	font-family: $museo-sans;
+	color: $greeny-gray;
+	font-weight: 100;
+	font-size: 1.5em;
+	margin: 0;
+	/* letter-spacing: ;*/
+}
+
+.c-subhead {
+	text-transform: uppercase;
+  font-size: 0.8em;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+
+
+}
+
+.section-head {
+	font-family: $museo-sans;
+	color: $greeny-gray;
+	font-weight: 100;
+	/*	font-size: ;
+	letter-spacing: ;*/
+}
+
+.section-subhead {
+	font-family: $museo-sans;
+	color: $greeny-gray;
+	font-weight: 700;
+	/*	font-size: ;
+	letter-spacing: ;*/
+}
+
+.no_margin {
+	margin: 0;
+	line-height: 1.5em;
+}
+
+.hidden {
+	display: none;
+}
+
+.content-collapsed {
+	height: 100px;
+	-webkit-transition: height 0.5s ease;
+	transition: height 0.5s ease;
+}
+
+.content-expanded {
+	height: auto;
+	-webkit-transition: height 0.5s ease;
+	transition: height 0.5s ease;
+}
+
+
+/*FORM ELEMENTS*/
+
+
+#mybutton {
+	background-color: $dark-blue;
+  border: none;
+  border-radius: 3px;
+	color: $yellow-white;
+	float: right;
+	font-family: $museo-sans;
+	font-size: 0.8em;
+	font-weight: 700;
+  height: 47px;
+	letter-spacing: 0.2em;
+	text-transform: uppercase;
+  text-decoration: none;
+  padding: 10px 18px;
+  width: 24%;
+}
+
+#myinput {
+	border-radius: 3px;
+  background-color: $light-blue;
+	height: 45px;
+	margin-right: 1.32%;
+	width: 70%;
+  padding-left: 2%;
+}
+
+input[type="text"] {
+	font-family: $chaparral-pro;
+  border: none;
+	color: $dark-blue;
+	font-weight: 400;
+	font-size: 0.9em;
+	padding-left: 1%;
+}
+
+/*DIVS*/
+
+#page-top {
+  width: 100%;
+  background: $aquamarine;
+  padding-bottom: 20%;
+
+}
+
+#intro-div {
+	padding: 3em;
+	margin-top: 7%;
+	margin-bottom: 3%;
+  width: 48%;
+  margin: auto;
+}
+
+.company-div {
+	background-color: #fff;
+	padding: 2em;
+	margin-top: 3%;
+	margin-bottom: 3%;
+	overflow: hidden;
+}
+
+.contentToggle {
+	float: right;
+}
+
+.grid_1,
+.grid_2,
+.grid_3 {
+	margin-right: 2%;
+	float: left;
+	display: block;
+}
+
+.grid_1 { width: 20%; }
+.grid_2 { width: 60%; }
+.grid_3 {
+	width: 10%;
+	margin-right: 0px;
+}
+
+.clear{clear:both;display:block;overflow:hidden;visibility:hidden;width:0;height:0}.clearfix:after{clear:both;content:' ';display:block;font-size:0;line-height:0;visibility:hidden;width:0;height:0}* html .clearfix,*:first-child+html .clearfix{zoom:1}
+
+/*MEDIA QUERIES*/
+
+@media all and (max-width: 840px) {
+  #myinput {
+  	width: 100%;
+  	float: none;
+  }
+
+  #mybutton {
+  	width: 100%;
+  	float: none;
+  }
+}
