@@ -6,29 +6,37 @@
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application', controller_name %>
 
+
     <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/freebase/suggest/4_2/suggest.min.css" />
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js"></script>
+
     <script type="text/javascript" src="https://www.gstatic.com/freebase/suggest/4_1/suggest.min.js"></script>
     <script type="text/javascript" src="//use.typekit.net/smx6kfu.js"></script>
     <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+
+
 
     <%= csrf_meta_tags %>
 
   </head>
   <body>
-    <div id="page-top">
-      <div id="intro-div">
-        <div id="title-logo">
+
+    <div id="landing">
+
+      <div id="landing-content" class="clearfix">
+        <div id="header">
           <h1 id="title"><span id="kern">T</span>attle</h1>
-          <img id="logo" alt="logo" src="/assets/tattle_logo.png">
+          <img id="logo" alt="Tattle: who owns what" class="animated" src="/assets/tattle_logo.png">
+          <h2 id="tagline">Who owns what</h2>
         </div>
-          <h2 id="intro">Who owns what</h2>
         <form id="myform">
           <input type="text" id="myinput" placeholder="e.g. Burt's Bees"/>
           <input type="submit" value="search" id="mybutton">
         </form>
       </div>
+
     </div>
+
     <%= yield %>
 
   </body>
