@@ -4,9 +4,9 @@ class ApplicationController < ActionController::Base
   # protect_from_forgery with: :exception
 
   private
-  def self.generate_results(company_name)
-    results = self.freebase_search(company_name)
-    results["company"][:nyt] = self.fetch_articles(company_name)
+  def generate_results(company_name)
+    results = freebase_search(company_name)
+    results["company"][:nyt] = fetch_articles(company_name)
     begin
       results["company"][:certifications] = Company.where("name like ?", "%#{company_name}%").first.certificates.pluck(:name)
     rescue
@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
     end
     if results["parents"]
       results["parents"].each do |parent|
-        parent[:nyt] = self.fetch_articles(parent[:name]) if parent[:name]
+        parent[:nyt] = fetch_articles(parent[:name]) if parent[:name]
       end
     end
     begin
@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
     results
   end
 
-  def self.freebase_search(company_name)
+  def freebase_search(company_name)
     freebase = FreebaseService.new
     results = {"company" => { name: company_name } }
     resource = freebase.get_resource(company_name)
@@ -51,7 +51,7 @@ class ApplicationController < ActionController::Base
     results
   end
 
-  def self.fetch_articles(query)
+  def fetch_articles(query)
     nyt = NytimesMessenger.new
     nyt.make_query(query)
   end

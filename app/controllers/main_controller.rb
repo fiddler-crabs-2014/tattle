@@ -6,8 +6,8 @@ class MainController < ApplicationController
 
   def search
     respond_to do |format|
-      format.html { render :json => ApplicationController.generate_results(params["company"]) }
-      format.json { render :json => ApplicationController.generate_results(params["company"]) }
+      format.html { render :json => generate_results(params["company"]) }
+      format.json { render :json => generate_results(params["company"]) }
     end
   end
 
