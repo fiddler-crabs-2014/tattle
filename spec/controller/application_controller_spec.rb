@@ -4,10 +4,16 @@ describe ApplicationController do
 
   describe "#generate_results" do
 
+    it "searches freebase" do
+      results = generate_results("Burt's Bees").stub(freebase_search).and_return("")
+
+      expect(results).to eq 
+    end
+
     context "has a parent company with no certifications" do
 
       before(:all) do
-        @results = ApplicationController.generate_results("Burt's Bees")
+        @results = generate_results("Burt's Bees")
       end
 
       context "has a parent company" do
@@ -40,7 +46,7 @@ describe ApplicationController do
   end
 
 
-  describe "#search_articles" do
+  describe "#fetch_articles" do
     before(:all) do
       @articles_result = ApplicationController.search_articles("Burt's Bees")
     end
