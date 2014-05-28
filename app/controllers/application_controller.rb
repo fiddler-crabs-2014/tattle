@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
   def generate_results(company_name)
     results = freebase_search(company_name)
     results["company"][:nyt] = fetch_articles(company_name)
+    results[:new] = true if results["company"][:nyt][:docs] && results["company"][:nyt][:docs].length > 0
     begin
       results["company"][:certifications] = Company.where("name like ?", "%#{company_name}%").first.certificates.pluck(:name)
     rescue
@@ -15,6 +16,7 @@ class ApplicationController < ActionController::Base
     if results["parents"]
       results["parents"].each do |parent|
         parent[:nyt] = fetch_articles(parent[:name]) if parent[:name]
+        results[:new] = true if results["company"][:nyt][:docs] && results["company"][:nyt][:docs].length > 0
       end
     end
     begin
