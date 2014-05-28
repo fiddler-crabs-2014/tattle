@@ -7,12 +7,15 @@ this.IndexCtrl = function($scope, $location, $http) {
 
     var responsePromise = $http.get('/search', {params: {company: search_company}});
 
+    $('#logo').addClass('pulse');
+
     responsePromise.success(function(data) {
       console.log(data);
       $scope.company_info = data;
       $("#landing").addClass('landing-post-search');
       $("#landing-content").addClass('landing-content-post-search');
       $("#tagline").addClass('tagline-post-search');
+      $('#logo').removeClass('pulse');
     });
 
     responsePromise.error(function() {

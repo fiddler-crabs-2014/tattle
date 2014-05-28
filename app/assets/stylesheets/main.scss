@@ -6,8 +6,34 @@ $yellow-white: rgb(252, 251, 228); /*(background for a section, also color of ty
 $dark-blue: rgb(29, 99, 135); /*(for search button)*/
 $light-blue: rgb(192,232,210); /*(for search bar)*/
 $greeny-gray: rgb(95, 115, 119); /*(for type and icons)*/
-$dark-gray: rgb(84, 104, 108); /*(for mouseover)*/
-$darker-blue: rgb(23, 84, 115); /*(for mouseover on button)*/
+
+/*
+ * Pulse animation
+*/
+
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@-webkit-keyframes pulse {
+  0% { -webkit-transform: scale(1); }
+  50% { -webkit-transform: scale(1.1); }
+  100% { -webkit-transform: scale(1); }
+}
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+.pulse {
+  -webkit-animation-name: pulse;
+  animation-name: pulse;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+}
 
 /*fonts*/
 
@@ -231,15 +257,15 @@ input[type="text"] {
 	float: right;
 }
 
-.grid_1,
-.grid_2 {
+.column_left,
+.column_main {
 	margin: 3% 2% 0 0;
 	float: left;
 	display: block;
 }
 
-.grid_1 { width: 12%; }
-.grid_2 {
+.column_left { width: 12%; }
+.column_main {
 	width: 75%;
 	margin-right: 0px;
 }
