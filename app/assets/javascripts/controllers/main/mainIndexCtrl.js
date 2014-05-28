@@ -6,11 +6,8 @@ this.IndexCtrl = function($scope, $location, $http) {
     var search_company = $('#myinput').val();
 
     var responsePromise = $http.get('/search', {params: {company: search_company}});
-      // console.log($(this));
+
     responsePromise.success(function(data) {
-      // console.log("inside success!")
-      // console.log($(this));
-      console.log(data);
       $scope.company_info = data;
     });
 
@@ -20,37 +17,29 @@ this.IndexCtrl = function($scope, $location, $http) {
 
   });
 
-  // $("#parent_companies form").on('submit', function(event) {
-  //   event.preventDefault();
-  //   console.log("hello")
 
-  //   // var parent_company = $( this ).data('company');
-  //   // console.log(parent_company)
+  $scope.searchSubsidiary = function(child) {
 
-  //   // var responsePromise = $http.get('/children', {params: {company: parent_company}});
+    var responsePromise = $http.get('/search', {params: {company: child}});
 
-  //   // responsePromise.success(function(data) {
-  //   //   console.log(data);
-  //   //   // $scope.company_info = data;
-  //   // });
+    responsePromise.success(function(data) {
+      $scope.company_info = data;
+    });
 
-  //   // responsePromise.error(function() {
-  //   //   alert("No, not that one. Try a different one.");
-  //   // });
+    responsePromise.error(function() {
+      alert("No, not that one. Try a different one.");
+    });
 
-  // });
+  };
 
-  return $scope.viewChildren = function(company) {
-    console.log("hello");
+  $scope.viewChildren = function(company, index) {
 
     var parent_company = company;
-    console.log(parent_company);
 
     var responsePromise = $http.get('/children', {params: {company: parent_company}});
 
     responsePromise.success(function(data) {
-      console.log(data);
-      // $scope.company_info = data;
+      $scope.company_info.parents[index].children_info = data;
     });
 
     responsePromise.error(function() {
@@ -58,9 +47,6 @@ this.IndexCtrl = function($scope, $location, $http) {
     });
   };
 
-  return $scope.viewBrowse = function() {
-    return $location.url('/browse');
-  };
 
 };
 

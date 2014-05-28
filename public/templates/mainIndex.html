@@ -15,19 +15,20 @@
 
     <div ng-show="company_info.parents" ng-repeat="parent in company_info.parents">
 
-      <!-- <div > -->
-
         <div class="grid_1">&nbsp;</div>
 
         <div class="grid_2">
           <p class="category c-subhead">parent company</p>
           <p class="category">{{parent.name}}</p>
           <button class="contentToggle" ng-click="expanded = !expanded">toggle</button></p>
-          <p class="content-collapsed" ng-class="expanded ? 'content-expanded' : 'content-collapsed'">{{parent.description}}
-          <button ng-click="viewChildren(parent.name)" id="parent.name">view {{parent.name}}'s other subsidiaries</button>
-        </div>
+          <p class="content-collapsed" ng-class="expanded ? 'content-expanded' : 'content-collapsed'">{{parent.description}}</p>
 
-      <!-- </div> -->
+          <button ng-click="viewChildren(parent.name, $index)" id="parent.name">view {{parent.name}}'s other subsidiaries</button>
+
+          <div ng-repeat="child in parent.children_info.children">
+            <button ng-click="searchSubsidiary(child)" id="child">{{child}}</button>
+          </div>
+        </div>
 
     </div>
 
@@ -35,7 +36,7 @@
 
       <div class="grid_1">&nbsp;</div>
 
-      <div ng-show="!company_info.parents" class="grid_2 clearfix">
+      <div ng-show="!company_info.parents" class="grid_2">
         <h2 class="section-head">
           {{company_info.company.name}} doesn't appear to have a parent company
         </h2>
