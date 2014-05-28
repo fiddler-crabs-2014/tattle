@@ -6,8 +6,9 @@ class ApplicationController < ActionController::Base
   private
   def generate_results(company_name)
     results = freebase_search(company_name)
+
     results["company"][:nyt] = fetch_articles(company_name)
-    results[:new] = true if results["company"][:nyt][:docs] && results["company"][:nyt][:docs].length > 0
+    results[:news] = true if results["company"][:nyt]["docs"] && results["company"][:nyt]["docs"].length > 0
     begin
       results["company"][:certifications] = Company.where("name like ?", "%#{company_name}%").first.certificates.pluck(:name)
     rescue
@@ -15,13 +16,16 @@ class ApplicationController < ActionController::Base
     end
     if results["parents"]
       results["parents"].each do |parent|
+
         parent[:nyt] = fetch_articles(parent[:name]) if parent[:name]
-        results[:new] = true if results["company"][:nyt][:docs] && results["company"][:nyt][:docs].length > 0
+        results[:news] = true if results["company"][:nyt]["docs"] && results["company"][:nyt]["docs"].length > 0
+        puts "RESULTS: #{results.inspect}"
+        begin
+          certification = Company.where("name like ?", "%#{parent[:name]}%").first.certificates
+          parent[:certifications] = { name: certification.name, description: certification.description }
+        rescue
+        end
       end
-    end
-    begin
-      parent[:certifications] = Company.where("name like ?", "%#{parent[:name]}%").first.certificates.pluck(:name)
-    rescue
     end
     results
   end
@@ -29,6 +33,7 @@ class ApplicationController < ActionController::Base
   def freebase_search(company_name)
     freebase = FreebaseService.new
     results = {"company" => { name: company_name } }
+    puts "RESULTS in freebase search: #{results.inspect}"
     resource = freebase.get_resource(company_name)
     best_match = resource.values.first
     results[:industry] = best_match.as_json["data"]["property"]["/common/topic/notable_for"]["values"][0]["text"]
@@ -55,6 +60,7 @@ class ApplicationController < ActionController::Base
 
   def fetch_articles(query)
     nyt = NytimesMessenger.new
+
     nyt.make_query(query)
   end
 
