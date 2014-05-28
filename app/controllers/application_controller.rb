@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
     results = freebase_search(company_name)
 
     results["company"][:nyt] = fetch_articles(company_name)
+
     results[:news] = true if results["company"][:nyt]["docs"] && results["company"][:nyt]["docs"].length > 0
     begin
       results["company"][:certifications] = Company.where("name like ?", "%#{company_name}%").first.certificates.pluck(:name)
@@ -18,6 +19,7 @@ class ApplicationController < ActionController::Base
       results["parents"].each do |parent|
 
         parent[:nyt] = fetch_articles(parent[:name]) if parent[:name]
+
         results[:news] = true if results["company"][:nyt]["docs"] && results["company"][:nyt]["docs"].length > 0
         puts "RESULTS: #{results.inspect}"
         begin
@@ -60,7 +62,6 @@ class ApplicationController < ActionController::Base
 
   def fetch_articles(query)
     nyt = NytimesMessenger.new
-
     nyt.make_query(query)
   end
 

@@ -22,7 +22,7 @@ describe ApplicationController do
 
         it { @results.should_not be_empty }
 
-        it { @results["parent1"][:name].should include("Clorox")}
+        it { @results["parents"][:name].should include("Clorox")}
       end
 
       context "has no certifications" do

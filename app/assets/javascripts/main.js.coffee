@@ -1,9 +1,6 @@
-#= require_directory ./controllers/main
-#= require_directory ./freebase
+window.CC = angular.module('CC', ['ngRoute'])
 
-CC = angular.module('CC', ['ngRoute'])
-
-CC.config(['$routeProvider', ($routeProvider) ->
+window.CC.config(['$routeProvider', ($routeProvider) ->
   $routeProvider.when('/results', { templateUrl: '/templates/mainResults.html', controller: 'ResultsCtrl' } )
 
   $routeProvider.when('/browse', { templateUrl: '/templates/mainBrowse.html', controller: 'BrowseCtrl' } )
@@ -11,3 +8,5 @@ CC.config(['$routeProvider', ($routeProvider) ->
   $routeProvider.otherwise({ templateUrl: '/templates/mainIndex.html', controller: 'IndexCtrl' } )
 
 ])
+
+CC.controller('IndexCtrl', this.IndexCtrl)

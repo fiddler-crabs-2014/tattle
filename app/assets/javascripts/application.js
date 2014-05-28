@@ -2,9 +2,12 @@
 
 //= require jquery
 //= require jquery_ujs
-//= require angular
-//= require angular-route
-//= require angular-resource
+//= require vendor/angular
+//= require vendor/angular-route
+//= require vendor/angular-resource
+//= require_directory ./controllers/main
+//= require_directory ./freebase
+//= require main
 
 // ...
 

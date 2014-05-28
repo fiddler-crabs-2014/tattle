@@ -6,6 +6,9 @@ $yellow-white: rgb(252, 251, 228); /*(background for a section, also color of ty
 $dark-blue: rgb(29, 99, 135); /*(for search button)*/
 $light-blue: rgb(192,232,210); /*(for search bar)*/
 $greeny-gray: rgb(95, 115, 119); /*(for type and icons)*/
+$dark-gray: rgb(84, 104, 108); /*(for mouseover)*/
+$darker-blue: rgb(23, 84, 115); /*(for mouseover on button)*/
+
 
 /*
  * Pulse animation
@@ -34,6 +37,7 @@ $greeny-gray: rgb(95, 115, 119); /*(for type and icons)*/
   -webkit-animation-iteration-count: infinite;
   -webkit-animation-timing-function: linear;
 }
+
 
 /*fonts*/
 
