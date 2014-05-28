@@ -1,10 +1,11 @@
 <div ng-show="company_info.company" class="company-div clearfix">
 
     <div class="grid_1">
-      <p class="category">{{company_info.company.name}}</p>
-      <p class="category c-subhead">your search</p>
+      <img alt="suitcase" src="/assets/tattle_suitcase.png" id="icon">
     </div>
     <div class="grid_2">
+      <p class="category c-subhead">your search</p>
+      <p class="category">{{company_info.company.name}}</p>
       <p class="no_margin content-collapsed" ng-class="expanded ? 'content-expanded' : 'content-collapsed'">{{company_info.company.description}}</p>
     </div>
     <div class="grid_3"><button class="contentToggle" ng-click="expanded = !expanded">toggle</button></div>
@@ -36,7 +37,11 @@
   </div>
 </div>
 
-<div ng-show="company_info.company" class="company-div">
+
+<div ng-show="company_info.company" class="company-div news grid 2">
+<div class="grid_1">
+  <img alt="nyt" src="/assets/tattle_nyt.png" id="icon">
+</div>
   <p class="category">Articles we think you might like:</p>
   <p ng-repeat="article in company_info.company.nyt.docs">
     <a href="{{article.web_url}}" target="_blank">{{article.headline.main}}</a>
@@ -44,19 +49,22 @@
 
   <div ng-repeat="parent in company_info.parents" >
     <p ng-repeat="article in parent.nyt.docs">
-      <a href="{{article.web_url}}" target="_blank">{{article.headline.main}}</a>
+      <a href="{{article.web_url}}" target="_blank" class="grid_2">{{article.headline.main}}</a>
     </p>
   </div>
 </div>
 
-<div ng-show="company_info.company.certifications" class="company-div clearfix">
-  <div ng-repeat="certification in company_info.company.certifications">
-      <div class="grid_1">
-        <p class="category">{{certification}}</p>
+<div ng-show="company_info.company.certifications" class="company-div clearfix cert grid_2">
+  <div class="grid_1">
+    <img alt="ribbon" src="/assets/tattle_ribbon.png" id="icon">
+  </div>
+  <div class="grid_2" ng-repeat="certification in company_info.company.certifications">
+      <div>
         <p class="category c-subhead">certification</p>
+        <p class="category">{{certification}}</p>
       </div>
-      <div class="grid_2">
-        <p class="no_margin">Certification details coming soon.</p>
+      <div>
+        <p class="no_margin grid_2">Certification details coming soon.</p>
       </div>
   </div>
 </div>
