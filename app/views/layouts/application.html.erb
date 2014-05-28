@@ -16,19 +16,23 @@
 
   </head>
   <body>
-    <div id="page-top">
-      <div id="intro-div">
-        <div id="title-logo">
+
+    <div id="landing">
+
+      <div id="landing-content" class="clearfix">
+        <div id="header">
           <h1 id="title"><span id="kern">T</span>attle</h1>
-          <img id="logo" alt="logo" src="/assets/tattle_logo.png">
+          <img id="logo" alt="Tattle: who owns what" class="animated" src="/assets/tattle_logo.png">
+          <h2 id="tagline">Who owns what</h2>
         </div>
-          <h2 id="intro">Who owns what</h2>
         <form id="myform">
           <input type="text" id="myinput" placeholder="e.g. Burt's Bees"/>
           <input type="submit" value="search" id="mybutton">
         </form>
       </div>
+
     </div>
+
     <%= yield %>
 
   </body>
