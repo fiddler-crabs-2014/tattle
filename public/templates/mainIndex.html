@@ -10,21 +10,25 @@
     <div class="grid_3"><button class="contentToggle" ng-click="expanded = !expanded">toggle</button></div>
 </div>
 
-<div ng-repeat="parent in company_info.parents">
+<div id="parent_companies" ng-repeat="parent in company_info.parents">
 
   <div ng-show="company_info.company" class="company-div clearfix">
     <div ng-show="parent.name">
       <div class="grid_1">
         <p class="category">{{parent.name}}</p>
         <p class="category c-subhead">parent company</p>
+        <a href="#">who owns what</a>
       </div>
       <div class="grid_2">
-        <p class="no_margin content-collapsed" ng-class="expanded ? 'content-expanded' : 'content-collapsed'">{{parent.description}}</p>
+        <p id="content" class="no_margin content-collapsed" ng-class="expanded ? 'content-expanded' : 'content-collapsed'">{{parent.description}}</p>
       </div>
       <div class="grid_3"><button class="contentToggle" ng-click="expanded = !expanded">toggle</button></div>
     </div>
 
+    <button ng-click="viewChildren(parent.name)" id="parent.name">view {{parent.name}}'s other subsidiaries</button>
+
   </div>
+
 
 </div>
 
