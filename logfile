@@ -9,3 +9,6 @@ LOG:  database system is ready to accept connections
 LOG:  database system was shut down at 2014-05-27 19:38:56 EDT
 LOG:  autovacuum launcher started
 LOG:  database system is ready to accept connections
+LOG:  database system was shut down at 2014-05-28 00:35:22 EDT
+LOG:  autovacuum launcher started
+LOG:  database system is ready to accept connections
