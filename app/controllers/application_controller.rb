@@ -24,7 +24,6 @@ class ApplicationController < ActionController::Base
     rescue
     end
     results
-    end
   end
 
   def self.freebase_search(company_name)
