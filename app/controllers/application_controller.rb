@@ -22,6 +22,7 @@ class ApplicationController < ActionController::Base
     begin
       parent[:certifications] = Company.where("name like ?", "%#{parent[:name]}%").first.certificates.pluck(:name)
     rescue
+    end
     results
   end
 
