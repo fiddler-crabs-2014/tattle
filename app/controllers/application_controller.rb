@@ -12,9 +12,7 @@ class ApplicationController < ActionController::Base
     results["company"][:certifications] = certs_info(company_name)
 
     results = process_parents(results)
-    clean_nyt(results[:nyt])
-    capitalize_headlines(results[:nyt])
-    minimize_dates(results[:nyt])
+    results[:nyt] = clean_nyt(results[:nyt])
     results
   end
 
@@ -30,6 +28,17 @@ class ApplicationController < ActionController::Base
   def clean_nyt(nyt_results)
     capitalize_headlines(nyt_results)
     minimize_dates(nyt_results)
+    unique_nyt(nyt_results)
+  end
+
+  def unique_nyt(nyt_results)
+    unique_results = []
+    headlines = []
+    nyt_results.each do |result|
+      unique_results << result unless headlines.include?(result["headline"]["main"])
+      headlines << result["headline"]["main"]
+    end
+    unique_results
   end
 
   def minimize_dates(nyt_results)
