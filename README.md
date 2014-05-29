@@ -1,9 +1,8 @@
-##Tattle
-[![Build Status](https://circleci.com/gh/fiddler-crabs-2014/tattle.png?circle-token=e4dd1a500a7424120be3d7ee3e79de5a7e02021f)](https://circleci.com/gh/fiddler-crabs-2014/tattle/1)
+##Tattle   [![Build Status](https://circleci.com/gh/fiddler-crabs-2014/tattle.png?circle-token=e4dd1a500a7424120be3d7ee3e79de5a7e02021f)](https://circleci.com/gh/fiddler-crabs-2014/tattle)
 
 Ever wondered who is really making that beverage you are drinking or that chapstick you use? Tattle provides you the capability to find who owns a brand or company and identifies any controversies surrounding them. We make it easy to make ethical decisions regarding your choices as a consumer.
 
-[deployed app](http://gentle-beyond-4938.herokuapp.com/)・[trello](https://trello.com/b/Je07GDzP/monday-mvp)
+[deployed app](http://gentle-beyond-4938.herokuapp.com/)・[trello](https://trello.com/b/Je07GDzP/monday-mvp)・[circle ci](https://circleci.com/gh/fiddler-crabs-2014/tattle)
 
 
 

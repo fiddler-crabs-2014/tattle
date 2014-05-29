@@ -25,7 +25,7 @@ class FreebaseService
 
   def get_description(id)
     resource = FreebaseAPI::Topic.get(id)
-    resource.description || "No Description Available for this company. "
+    resource.description
   end
 
   def get_id(company_name)
