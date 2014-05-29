@@ -16,7 +16,11 @@ class FreebaseService
   end
 
   def best_match(company)
-    get_resource(company).values.first
+    begin
+      get_resource(company).values.select { |x| x.name == company }.first
+    rescue
+      get_resource(company).values.first
+    end
   end
 
   def get_description(id)
@@ -25,7 +29,7 @@ class FreebaseService
   end
 
   def get_id(company_name)
-    best_match(company_name).id
+    best_match(company_name).id if best_match(company_name)
   end
 
   def get_parents
@@ -34,9 +38,10 @@ class FreebaseService
 
   def populate_parents
     parents = get_parents
+    puts "PARENTS: #{parents}"
     if parents
       parents["/organization/organization/parent"].each do |parent|
-        unless parent['parent'][0] == @company_name || parent['parent'][0] == nil
+        unless parent['parent'][0] == @company_name || parent['parent'][0] == nil || parent['parent'][0].match("Independent company")
           results["parents"] << { name: parent['parent'][0], description: get_description(get_id(parent['parent'][0])) }
         end
       end
