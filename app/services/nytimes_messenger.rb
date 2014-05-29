@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 class NytimesMessenger
 
   def format_search(query)
