@@ -2,12 +2,13 @@ this.IndexCtrl = function($scope, $location, $http) {
 
   $("#myform").on('submit', function(event) {
     event.preventDefault();
+    $('#logo').addClass('pulse');
+
+    $scope.expanded = false;
 
     var search_company = $('#myinput').val();
 
     var response = $http.get('/search', {params: {company: search_company}});
-
-    $('#logo').addClass('pulse');
 
     response.success(function(data) {
       console.log(data);
@@ -20,6 +21,7 @@ this.IndexCtrl = function($scope, $location, $http) {
     });
 
     response.error(function() {
+      $('#logo').removeClass('pulse');
       alert("No, not that one. Try a different one.");
     });
 
@@ -27,16 +29,20 @@ this.IndexCtrl = function($scope, $location, $http) {
 
   $scope.searchSubsidiary = function(child) {
     var response = $http.get('/search', {params: {company: child}});
+
     $('#myinput').val(child);
     $('#logo').addClass('pulse');
-    $('html,body').animate({ scrollTop: 0}, 1000);
+    $('html,body').animate({ scrollTop: 0}, 700);
 
     response.success(function(data) {
-      $scope.company_info = data;
+      $scope.open = false;
+      $scope.expanded = false;
       $('#logo').removeClass('pulse');
+      $scope.company_info = data;
     });
 
     response.error(function() {
+      $('#logo').removeClass('pulse');
       alert("No, not that one. Try a different one.");
     });
 
@@ -47,6 +53,7 @@ this.IndexCtrl = function($scope, $location, $http) {
     var response = $http.get('/children', {params: {company: company}});
 
     response.success(function(data) {
+
       if (index === 'na') {
         $scope.company_info.children_info = data;
       } else {
