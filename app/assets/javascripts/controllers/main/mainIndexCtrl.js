@@ -27,9 +27,10 @@ this.IndexCtrl = function($scope, $location, $http) {
 
   $scope.searchSubsidiary = function(child) {
     var response = $http.get('/search', {params: {company: child}});
+
     $('#myinput').val(child);
     $('#logo').addClass('pulse');
-    $('html,body').animate({ scrollTop: 0}, 1000);
+    $('html,body').animate({ scrollTop: 0}, 700);
 
     response.success(function(data) {
       $scope.company_info = data;
