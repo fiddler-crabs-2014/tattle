@@ -16,6 +16,7 @@ this.IndexCtrl = function($scope, $location, $http) {
       $("#landing-content").addClass('landing-content-post-search');
       $("#tagline").addClass('tagline-post-search');
       $('#logo').removeClass('pulse');
+      $('footer').removeClass('hidden');
     });
 
     response.error(function() {
@@ -24,12 +25,15 @@ this.IndexCtrl = function($scope, $location, $http) {
 
   });
 
-
   $scope.searchSubsidiary = function(child) {
     var response = $http.get('/search', {params: {company: child}});
+    $('#myinput').val(child);
+    $('#logo').addClass('pulse');
+    $('html,body').animate({ scrollTop: 0}, 1000);
 
     response.success(function(data) {
       $scope.company_info = data;
+      $('#logo').removeClass('pulse');
     });
 
     response.error(function() {
@@ -45,12 +49,8 @@ this.IndexCtrl = function($scope, $location, $http) {
     response.success(function(data) {
       if (index === 'na') {
         $scope.company_info.children_info = data;
-        console.log('$scope.company_info.children_info is: ');
-        console.log($scope.company_info.children_info);
       } else {
         $scope.company_info.parents[index].children_info = data;
-        console.log('$scope.company_info.parents[index].children_info is: ');
-        console.log($scope.company_info.parents[index].children_info);
       };
     });
 
@@ -62,7 +62,6 @@ this.IndexCtrl = function($scope, $location, $http) {
       };
     });
   };
-
 
 };
 
