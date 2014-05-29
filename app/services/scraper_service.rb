@@ -29,7 +29,7 @@ class ScraperService
     page.xpath('//div[2]/div[2]/div[3]/div/ul/li/a').each{ |element| @certificate.companies.create(name: element.text ) }
     page.xpath('//div[4]/div/ul/li/a').each{ |element| @certificate.companies.create(name: element.text ) }
   end
-  
+
   def usda_organics
   	description = "USDA certified organic foods are grown and processed according to federal guidelines addressing, among many factors, soil quality, animal raising practices, pest and weed control, and use of additives. Organic producers rely on natural substances and physical, mechanical, or biologically based farming methods to the fullest extent possible."
     certificate = Certificate.create(body: "USDA", name: "USDA Certified Organic", category: "organic", description: description)

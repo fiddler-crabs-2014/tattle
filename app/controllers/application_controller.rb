@@ -13,6 +13,7 @@ class ApplicationController < ActionController::Base
 
     results = process_parents(results)
     results[:nyt] = clean_nyt(results[:nyt])
+    results["parents"] = unique_parents(results["parents"])
     results
   end
 
@@ -39,6 +40,16 @@ class ApplicationController < ActionController::Base
       headlines << result["headline"]["main"]
     end
     unique_results
+  end
+
+  def unique_parents(parents)
+    unique_pars = []
+    descriptions = []
+    parents.each do |parent|
+      unique_pars<< parent unless descriptions.include?(parent[:description])
+      descriptions << parent[:description]
+    end
+    unique_pars
   end
 
   def minimize_dates(nyt_results)
