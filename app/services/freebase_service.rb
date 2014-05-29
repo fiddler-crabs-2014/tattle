@@ -33,6 +33,7 @@ class FreebaseService
   end
 
   def get_parents
+    puts "ID: #{get_id(@company_name)}"
     FreebaseAPI.session.mqlread({:id => get_id(@company_name), :'/organization/organization/parent' => [{ :parent => [] }] })
   end
 
@@ -41,7 +42,7 @@ class FreebaseService
     puts "PARENTS: #{parents}"
     if parents
       parents["/organization/organization/parent"].each do |parent|
-        unless parent['parent'][0] == @company_name || parent['parent'][0] == nil || parent['parent'][0].match("Independent company")
+        unless parent['parent'][0] == @company_name || parent['parent'][0] == nil || parent['parent'][0].match("Independent company") || parent['parent'][0].match("Independent Company")
           results["parents"] << { name: parent['parent'][0].chomp(":"), description: get_description(get_id(parent['parent'][0])) }
         end
       end
@@ -49,8 +50,8 @@ class FreebaseService
   end
 
   def search(company_name)
-    results["company"][:description] = get_description(get_id(@company_name))
-    populate_parents
+    results["company"][:description] = get_description(get_id(@company_name)) if get_id(@company_name)
+    populate_parents if get_id(@company_name)
     results
   end
 
