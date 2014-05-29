@@ -53,7 +53,7 @@
 
       <div class="column_left">&nbsp;</div>
 
-      <div ng-show="!company_info.parents" class="column_main">
+      <div ng-show="!!!company_info.parents.length" class="column_main">
         <h2 class="section-head">
           {{company_info.company.name}} doesn't appear to have a parent company
         </h2>
@@ -65,7 +65,7 @@
 
 </div>
 
-<div ng-show="company_info.nyt" id="news" class="clearfix">
+<div ng-show="company_info.nyt.length" id="news" class="clearfix">
 
   <div class="results_content">
     <div class="column_left">
