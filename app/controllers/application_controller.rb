@@ -13,6 +13,7 @@ class ApplicationController < ActionController::Base
 
     results = process_parents(results)
     capitalize_headlines(results[:nyt])
+    minimize_dates(results[:nyt])
     results
   end
 
@@ -22,6 +23,12 @@ class ApplicationController < ActionController::Base
       certs.map do |certification|
         { name: certification.name, description: certification.description } unless certification.class == String
       end
+    end
+  end
+
+  def minimize_dates(nyt_results)
+    nyt_results.each do |result|
+      result["pub_date"].chomp!("T00:00:00Z")
     end
   end
 
