@@ -61,7 +61,7 @@ a {
   -webkit-transition: all .1s ease;
   transition: all .1s ease;
   &:hover {
-    color: $darker-blue;
+    color: $dark-gray;
     -webkit-transition: all .1s ease;
     transition: all .1s ease;
   }
@@ -155,6 +155,13 @@ a {
   margin-bottom: 10px;
 }
 
+.nyt_date {
+  font-style: italic;
+  font-family: $museo-sans;
+  font-size: .75em;
+  letter-spacing: 0px;
+}
+
 .hidden {
   display: none;
 }
@@ -175,6 +182,36 @@ a {
   line-height: 1.4em;
 	-webkit-transition: all 2s ease;
 	transition: all 2s ease;
+}
+
+
+.content-toggle {
+  float: right;
+/*  width: 44px;
+  height: 15px;
+  background-image: url('/assets/tattle_arrow.png');*/
+  cursor: pointer;
+}
+
+.footnote {
+  font-size: 0.75em;
+}
+
+
+arrow-up {
+  -webkit-transform: rotate(30deg);
+  -moz-transform: rotate(30deg);
+  -ms-transform: rotate(30deg);
+  -o-transform: rotate(30deg);
+  transform: rotate(30deg);
+}
+
+arrow-down {
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg);
 }
 
 #companies {
@@ -244,13 +281,18 @@ input[type="text"] {
   display: inline-block;
 }
 
+button.child-view {
+
+}
+
 button.child-search {
-  background-color: #fcfbe4;
+  background-color: #E2E2CD;
   border-radius: 3px;
-  border: 1px solid buttonface;
+  border: 1px solid $greeny-gray;
   font-family: $museo-sans;
   color: $greeny-gray;
   font-weight: 100;
+  margin: 2px 3px;
 }
 
 /*DIVS*/
@@ -298,11 +340,6 @@ button.child-search {
   background-color: $light-aquamarine;
 }
 
-.content-toggle {
-	float: right;
-  cursor: pointer;
-}
-
 .column_left,
 .column_main {
 	margin-top: 2%;
@@ -328,6 +365,14 @@ button.child-search {
 }
 
 .clear{clear:both;display:block;overflow:hidden;visibility:hidden;width:0;height:0}.clearfix:after{clear:both;content:' ';display:block;font-size:0;line-height:0;visibility:hidden;width:0;height:0}* html .clearfix,*:first-child+html .clearfix{zoom:1}
+
+footer {
+  background-color: $aquamarine;
+  padding: 12px;
+  font-family: $museo-sans;
+  font-size: 0.9em;
+  color: $dark-gray;
+}
 
 /*MEDIA QUERIES*/
 
