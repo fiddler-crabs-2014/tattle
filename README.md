@@ -28,13 +28,15 @@ Work in progress.
 * Fork the project
 * ```Git clone``` your forked repository
 * ```Git add upstream master https://github.com/fiddler-crabs-2014/tattle.git```
-* Make a new branch describing the feature, test or chore you are adding or editing, eg ```git checkout -b feature/search```
+* Make a new branch describing the feature, bug, test or chore you are adding or editing, eg ```git checkout -b feature/search```
 * Make one or more well commented and clean commits to your fork.
 * Perform a pull request to the upstream master repository for review.
 
 
-####Catch us on Twitter!
-* [@tyleraadams](http://twitter.com/tyleraadams)
-* [@keatycodes](http://twitter.com/keatycodes) (product manager)
-* [@adam_godel](http://twitter.com/adam_godel) (technical lead)
-* [@julia_himmel](twitter.com/julia_himmel)
+####Team!
+| Name          |   Github                                   |   Twitter                                   | role   |
+| :-----------: | :----------------------------------------: | :-----------------------------------------: | :----: |
+| Tyler Adams | [tyleraadams](https://github.com/tyleraadams) | [@tyleraadams](http://twitter.com/tyleraadams) | |
+| Keaty Gross | [keaty](https://github.com/keaty) | [@keatycodes](http://twitter.com/keatycodes)  | product manager
+| Adam Godel  | [onweapps](https://github.com/onweapps) | [@adam_godel](http://twitter.com/adam_godel) | technical lead | 
+| Julia Himmel | [juliahimmel](https://github.com/juliahimmel) | [@julia_himmel](twitter.com/julia_himmel)| |
