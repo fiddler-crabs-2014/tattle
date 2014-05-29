@@ -280,3 +280,250 @@ Completed 200 OK in 5697ms (Views: 2.9ms | ActiveRecord: 43.8ms)
 
 
 Started GET "/assets/tattle_arrow.png" for 127.0.0.1 at 2014-05-29 13:59:33 -0400
+
+
+Started GET "/search?company=Strawberry" for 127.0.0.1 at 2014-05-29 14:00:59 -0400
+Processing by MainController#search as HTML
+  Parameters: {"company"=>"Strawberry"}
+  [1m[35mCompany Load (2.5ms)[0m  SELECT  "companies".* FROM "companies"  WHERE (name like '%Strawberry%')  ORDER BY "companies"."id" ASC LIMIT 1
+  [1m[36mCertificate Load (3.5ms)[0m  [1mSELECT "certificates".* FROM "certificates" INNER JOIN "certifications" ON "certificates"."id" = "certifications"."certificate_id" WHERE "certifications"."company_id" = $1[0m  [["company_id", 6830]]
+Completed 200 OK in 1477ms (Views: 0.4ms | ActiveRecord: 8.6ms)
+
+
+Started GET "/search?company=Dove" for 127.0.0.1 at 2014-05-29 14:01:09 -0400
+Processing by MainController#search as HTML
+  Parameters: {"company"=>"Dove"}
+  [1m[35mCompany Load (1.1ms)[0m  SELECT  "companies".* FROM "companies"  WHERE (name like '%Dove%')  ORDER BY "companies"."id" ASC LIMIT 1
+  [1m[36mCertificate Load (3.7ms)[0m  [1mSELECT "certificates".* FROM "certificates" INNER JOIN "certifications" ON "certificates"."id" = "certifications"."certificate_id" WHERE "certifications"."company_id" = $1[0m  [["company_id", 1255]]
+Completed 200 OK in 1313ms (Views: 0.4ms | ActiveRecord: 4.8ms)
+
+
+Started GET "/search?company=Delta+Air+Lines" for 127.0.0.1 at 2014-05-29 14:02:04 -0400
+Processing by MainController#search as HTML
+  Parameters: {"company"=>"Delta Air Lines"}
+  [1m[35mCompany Load (7.5ms)[0m  SELECT  "companies".* FROM "companies"  WHERE (name like '%Delta Air Lines%')  ORDER BY "companies"."id" ASC LIMIT 1
+Completed 200 OK in 2747ms (Views: 3.9ms | ActiveRecord: 7.5ms)
+
+
+Started GET "/children?company=Delta+Air+Lines" for 127.0.0.1 at 2014-05-29 14:02:09 -0400
+Processing by MainController#children as HTML
+  Parameters: {"company"=>"Delta Air Lines"}
+Completed 200 OK in 172ms (Views: 0.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/search?company=Mazda" for 127.0.0.1 at 2014-05-29 14:14:04 -0400
+Processing by MainController#search as HTML
+  Parameters: {"company"=>"Mazda"}
+  [1m[36mCompany Load (8.4ms)[0m  [1mSELECT  "companies".* FROM "companies"  WHERE (name like '%Mazda%')  ORDER BY "companies"."id" ASC LIMIT 1[0m
+Completed 200 OK in 1742ms (Views: 97.2ms | ActiveRecord: 8.4ms)
+
+
+Started GET "/search?company=Mazda" for 127.0.0.1 at 2014-05-29 14:16:47 -0400
+Processing by MainController#search as HTML
+  Parameters: {"company"=>"Mazda"}
+  [1m[35mCompany Load (11.9ms)[0m  SELECT  "companies".* FROM "companies"  WHERE (name like '%Mazda%')  ORDER BY "companies"."id" ASC LIMIT 1
+Completed 200 OK in 2072ms (Views: 2.3ms | ActiveRecord: 13.7ms)
+
+
+Started GET "/search?company=asfsadf" for 127.0.0.1 at 2014-05-29 14:17:35 -0400
+Processing by MainController#search as HTML
+  Parameters: {"company"=>"asfsadf"}
+  [1m[36mCompany Load (10.2ms)[0m  [1mSELECT  "companies".* FROM "companies"  WHERE (name like '%asfsadf%')  ORDER BY "companies"."id" ASC LIMIT 1[0m
+Completed 200 OK in 1602ms (Views: 0.3ms | ActiveRecord: 10.2ms)
+
+
+Started GET "/search?company=Toyota+Motor+Corporation" for 127.0.0.1 at 2014-05-29 14:18:09 -0400
+Processing by MainController#search as HTML
+  Parameters: {"company"=>"Toyota Motor Corporation"}
+  [1m[35mCompany Load (7.5ms)[0m  SELECT  "companies".* FROM "companies"  WHERE (name like '%Toyota Motor Corporation%')  ORDER BY "companies"."id" ASC LIMIT 1
+  [1m[36mCompany Load (7.5ms)[0m  [1mSELECT  "companies".* FROM "companies"  WHERE (name like '%Toyota Group%')  ORDER BY "companies"."id" ASC LIMIT 1[0m
+  [1m[35mCompany Load (8.3ms)[0m  SELECT  "companies".* FROM "companies"  WHERE (name like '%Toyota Industries%')  ORDER BY "companies"."id" ASC LIMIT 1
+Completed 200 OK in 6731ms (Views: 5.5ms | ActiveRecord: 23.3ms)
+
+
+Started GET "/assets/tattle_arrow.png" for 127.0.0.1 at 2014-05-29 14:18:16 -0400
+
+
+Started GET "/children?company=Toyota+Industries" for 127.0.0.1 at 2014-05-29 14:18:29 -0400
+Processing by MainController#children as HTML
+  Parameters: {"company"=>"Toyota Industries"}
+Completed 200 OK in 116ms (Views: 0.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/children?company=Toyota+Group" for 127.0.0.1 at 2014-05-29 14:18:30 -0400
+Processing by MainController#children as HTML
+  Parameters: {"company"=>"Toyota Group"}
+Completed 200 OK in 112ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/children?company=Toyota+Motor+Corporation" for 127.0.0.1 at 2014-05-29 14:18:33 -0400
+Processing by MainController#children as HTML
+  Parameters: {"company"=>"Toyota Motor Corporation"}
+Completed 200 OK in 117ms (Views: 0.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/search?company=Yummy+yum+yum" for 127.0.0.1 at 2014-05-29 14:21:02 -0400
+Processing by MainController#search as HTML
+  Parameters: {"company"=>"Yummy yum yum"}
+Completed 500 Internal Server Error in 673ms
+
+TypeError (no implicit conversion of nil into String):
+  app/services/freebase_service.rb:27:in `get_description'
+  app/services/freebase_service.rb:53:in `search'
+  app/controllers/application_controller.rb:9:in `generate_results'
+  app/controllers/main_controller.rb:9:in `block (2 levels) in search'
+  app/controllers/main_controller.rb:8:in `search'
+
+
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.8ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.3ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.6ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (19.5ms)
+
+
+Started GET "/search?company=asdfasdf" for 127.0.0.1 at 2014-05-29 14:21:08 -0400
+Processing by MainController#search as HTML
+  Parameters: {"company"=>"asdfasdf"}
+  [1m[36mCompany Load (9.9ms)[0m  [1mSELECT  "companies".* FROM "companies"  WHERE (name like '%asdfasdf%')  ORDER BY "companies"."id" ASC LIMIT 1[0m
+Completed 200 OK in 1882ms (Views: 0.3ms | ActiveRecord: 9.9ms)
+
+
+Started GET "/search?company=Yummy+yum+yum" for 127.0.0.1 at 2014-05-29 14:21:22 -0400
+Processing by MainController#search as HTML
+  Parameters: {"company"=>"Yummy yum yum"}
+Completed 500 Internal Server Error in 118ms
+
+TypeError (no implicit conversion of nil into String):
+  app/services/freebase_service.rb:27:in `get_description'
+  app/services/freebase_service.rb:53:in `search'
+  app/controllers/application_controller.rb:9:in `generate_results'
+  app/controllers/main_controller.rb:9:in `block (2 levels) in search'
+  app/controllers/main_controller.rb:8:in `search'
+
+
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.8ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.1ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.5ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (18.8ms)
+
+
+Started GET "/search?company=Yummy+yum+yum" for 127.0.0.1 at 2014-05-29 14:21:54 -0400
+Processing by MainController#search as HTML
+  Parameters: {"company"=>"Yummy yum yum"}
+Completed 500 Internal Server Error in 138ms
+
+NoMethodError (undefined method `description' for nil:NilClass):
+  app/services/freebase_service.rb:28:in `get_description'
+  app/services/freebase_service.rb:53:in `search'
+  app/controllers/application_controller.rb:9:in `generate_results'
+  app/controllers/main_controller.rb:9:in `block (2 levels) in search'
+  app/controllers/main_controller.rb:8:in `search'
+
+
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.9ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.1ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.4ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (17.5ms)
+
+
+Started GET "/search?company=Yummy+yum+yum" for 127.0.0.1 at 2014-05-29 14:22:10 -0400
+Processing by MainController#search as HTML
+  Parameters: {"company"=>"Yummy yum yum"}
+Completed 500 Internal Server Error in 121ms
+
+TypeError (no implicit conversion of nil into String):
+  app/services/freebase_service.rb:27:in `get_description'
+  app/services/freebase_service.rb:53:in `search'
+  app/controllers/application_controller.rb:9:in `generate_results'
+  app/controllers/main_controller.rb:9:in `block (2 levels) in search'
+  app/controllers/main_controller.rb:8:in `search'
+
+
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.8ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.4ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.6ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (114.0ms)
+
+
+Started GET "/search?company=Yummy+yum+yum" for 127.0.0.1 at 2014-05-29 14:23:20 -0400
+Processing by MainController#search as HTML
+  Parameters: {"company"=>"Yummy yum yum"}
+Completed 500 Internal Server Error in 117ms
+
+TypeError (no implicit conversion of nil into String):
+  app/services/freebase_service.rb:27:in `get_description'
+  app/services/freebase_service.rb:53:in `search'
+  app/controllers/application_controller.rb:9:in `generate_results'
+  app/controllers/main_controller.rb:9:in `block (2 levels) in search'
+  app/controllers/main_controller.rb:8:in `search'
+
+
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.8ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.1ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.6ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (19.6ms)
+
+
+Started GET "/search?company=Yummy+yum+yum" for 127.0.0.1 at 2014-05-29 14:23:52 -0400
+Processing by MainController#search as HTML
+  Parameters: {"company"=>"Yummy yum yum"}
+Completed 500 Internal Server Error in 151ms
+
+TypeError (no implicit conversion of nil into String):
+  app/services/freebase_service.rb:27:in `get_description'
+  app/services/freebase_service.rb:54:in `search'
+  app/controllers/application_controller.rb:9:in `generate_results'
+  app/controllers/main_controller.rb:9:in `block (2 levels) in search'
+  app/controllers/main_controller.rb:8:in `search'
+
+
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.3ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.8ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (19.0ms)
+
+
+Started GET "/search?company=Yummy+yum+yum" for 127.0.0.1 at 2014-05-29 14:24:07 -0400
+Processing by MainController#search as HTML
+  Parameters: {"company"=>"Yummy yum yum"}
+Completed 500 Internal Server Error in 240ms
+
+TypeError (no implicit conversion of nil into String):
+  app/services/freebase_service.rb:27:in `get_description'
+  app/services/freebase_service.rb:54:in `search'
+  app/controllers/application_controller.rb:9:in `generate_results'
+  app/controllers/main_controller.rb:9:in `block (2 levels) in search'
+  app/controllers/main_controller.rb:8:in `search'
+
+
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.6ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.1ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.4ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (29.2ms)
+
+
+Started GET "/search?company=Yummy+yum+yum" for 127.0.0.1 at 2014-05-29 14:24:26 -0400
+Processing by MainController#search as HTML
+  Parameters: {"company"=>"Yummy yum yum"}
+Completed 500 Internal Server Error in 700ms
+
+FreebaseAPI::ServiceError (Unique query may have at most one result. Got 100):
+  app/services/freebase_service.rb:37:in `get_parents'
+  app/services/freebase_service.rb:41:in `populate_parents'
+  app/services/freebase_service.rb:55:in `search'
+  app/controllers/application_controller.rb:9:in `generate_results'
+  app/controllers/main_controller.rb:9:in `block (2 levels) in search'
+  app/controllers/main_controller.rb:8:in `search'
+
+
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.7ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.4ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.3ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (19.7ms)
+
+
+Started GET "/search?company=Yummy+yum+yum" for 127.0.0.1 at 2014-05-29 14:24:45 -0400
+Processing by MainController#search as HTML
+  Parameters: {"company"=>"Yummy yum yum"}
+  [1m[35mCompany Load (7.9ms)[0m  SELECT  "companies".* FROM "companies"  WHERE (name like '%Yummy yum yum%')  ORDER BY "companies"."id" ASC LIMIT 1
+Completed 200 OK in 533ms (Views: 0.4ms | ActiveRecord: 9.2ms)
