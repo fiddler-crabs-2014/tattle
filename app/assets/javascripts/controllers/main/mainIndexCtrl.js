@@ -2,8 +2,9 @@ this.IndexCtrl = function($scope, $location, $http) {
 
   $("#myform").on('submit', function(event) {
     event.preventDefault();
-    $('#logo').addClass('pulse');
 
+    $('#logo').addClass('pulse');
+    $scope.open = false;
     $scope.expanded = false;
 
     var search_company = $('#myinput').val();
@@ -11,7 +12,6 @@ this.IndexCtrl = function($scope, $location, $http) {
     var response = $http.get('/search', {params: {company: search_company}});
 
     response.success(function(data) {
-      console.log(data);
       $scope.company_info = data;
       $("#landing").addClass('landing-post-search');
       $("#landing-content").addClass('landing-content-post-search');
@@ -30,15 +30,15 @@ this.IndexCtrl = function($scope, $location, $http) {
   $scope.searchSubsidiary = function(child) {
     var response = $http.get('/search', {params: {company: child}});
 
+    $scope.open = false;
+    $scope.expanded = false;
     $('#myinput').val(child);
     $('#logo').addClass('pulse');
     $('html,body').animate({ scrollTop: 0}, 700);
 
     response.success(function(data) {
-      $scope.open = false;
-      $scope.expanded = false;
-      $('#logo').removeClass('pulse');
       $scope.company_info = data;
+      $('#logo').removeClass('pulse');
     });
 
     response.error(function() {
