@@ -8,7 +8,7 @@ class FreebaseService
 
   def children(parent_name)
     children = FreebaseAPI.session.mqlread([{ name: parent_name, type: "/organization/organization", child: [{ child: [] }] }])
-    children[0]["child"].map { |relationship| relationship["child"][0] }.uniq
+    children[0]["child"].map { |relationship| relationship["child"][0].gsub("amp;", "") }.uniq
   end
 
   def get_resource(company)
