@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
     results["company"][:certifications] = certs_info(company_name)
 
     results = process_parents(results)
+    puts "RESULTS NYT #{results[:nyt]}"
     results[:nyt] = clean_nyt(results[:nyt])
     results["parents"] = unique_parents(results["parents"])
     results
@@ -67,7 +68,6 @@ class ApplicationController < ActionController::Base
         parent[:certifications] = certs_info(parent[:name])
       end
     end
-    results[:nyt] = nil if results[:nyt] == []
     results
   end
 
