@@ -5,64 +5,94 @@ class ApplicationController < ActionController::Base
 
   private
   def generate_results(company_name)
-    results = freebase_search(company_name)
+    freebase = FreebaseService.new(company_name)
+    results = freebase.search(company_name)
 
-    results["company"][:nyt] = fetch_articles(company_name)
+    results[:nyt] = fetch_articles(company_name)
+    results["company"][:certifications] = certs_info(company_name)
 
-    results[:news] = true if results["company"][:nyt]["docs"] && results["company"][:nyt]["docs"].length > 0
-    begin
-      results["company"][:certifications] = Company.where("name like ?", "%#{company_name}%").first.certificates.pluck(:name)
-    rescue
-      results["company"][:certifications] = nil
+    results = process_parents(results)
+    puts "RESULTS NYT #{results[:nyt]}"
+    results[:nyt] = clean_nyt(results[:nyt])
+    results["parents"] = unique_parents(results["parents"])
+    results
+  end
+
+  def certs_info(company_name)
+    certs = fetch_certs(company_name)
+    if certs
+      certs.map do |certification|
+        { name: certification.name, description: certification.description } unless certification.class == String
+      end
     end
+  end
+
+  def clean_nyt(nyt_results)
+    capitalize_headlines(nyt_results)
+    minimize_dates(nyt_results)
+    unique_nyt(nyt_results)
+  end
+
+  def unique_nyt(nyt_results)
+    unique_results = []
+    headlines = []
+    nyt_results.each do |result|
+      unique_results << result unless headlines.include?(result["headline"]["main"])
+      headlines << result["headline"]["main"]
+    end
+    unique_results
+  end
+
+  def unique_parents(parents)
+    unique_pars = []
+    descriptions = []
+    parents.each do |parent|
+      unique_pars<< parent unless descriptions.include?(parent[:description])
+      descriptions << parent[:description]
+    end
+    unique_pars
+  end
+
+  def minimize_dates(nyt_results)
+    nyt_results.each do |result|
+      result["pub_date"].chomp!("T00:00:00Z")
+    end
+  end
+
+  def process_parents(results)
     if results["parents"]
+      results["parents"].reverse!
       results["parents"].each do |parent|
-
-        parent[:nyt] = fetch_articles(parent[:name]) if parent[:name]
-
-        results[:news] = true if results["company"][:nyt]["docs"] && results["company"][:nyt]["docs"].length > 0
-        puts "RESULTS: #{results.inspect}"
-        begin
-          certification = Company.where("name like ?", "%#{parent[:name]}%").first.certificates
-          parent[:certifications] = { name: certification.name, description: certification.description }
-        rescue
-        end
+        results[:nyt] += fetch_articles(parent[:name]) if parent[:name]
+        results[:nyt].uniq!
+        parent[:certifications] = certs_info(parent[:name])
       end
     end
     results
   end
 
-  def freebase_search(company_name)
-    freebase = FreebaseService.new
-    results = {"company" => { name: company_name } }
-    puts "RESULTS in freebase search: #{results.inspect}"
-    resource = freebase.get_resource(company_name)
-    best_match = resource.values.first
-    results[:industry] = best_match.as_json["data"]["property"]["/common/topic/notable_for"]["values"][0]["text"]
-    id = best_match.id
-
-    begin
-
-      results["company"][:description] = freebase.get_description(freebase.get_id(company_name))
-
-      parents = freebase.get_parents(best_match)
-      results["parents"] = [] if parents["/organization/organization/parent"]
-
-      parents["/organization/organization/parent"].each_with_index do |parent, index|
-        unless parent['parent'][0] == company_name || parent['parent'][0] == nil
-          results["parents"] << { name: parent['parent'][0], description: freebase.get_description(freebase.get_id(parent['parent'][0])) }
-        end
-      end
-
-    rescue
+  def fetch_certs(name)
+    company = Company.where("name like ?", "%#{name}%").first
+    if company
+      company.certificates
+    else
+      nil
     end
+  end
 
-    results
+  def capitalize_headlines(nyt_results)
+    nyt_results.each do |result|
+      result["headline"]["main"].capitalize!
+    end
   end
 
   def fetch_articles(query)
     nyt = NytimesMessenger.new
-    nyt.make_query(query)
+    begin
+      nyt.make_query(query)["docs"]
+    rescue
+      []
+    end
   end
 
 end

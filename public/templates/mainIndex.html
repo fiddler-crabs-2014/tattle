@@ -9,10 +9,22 @@
     <div class="column_main">
       <p class="category c-subhead">your search</p>
       <p class="category">{{company_info.company.name}}</p>
-      <button class="contentToggle" ng-click="expanded = !expanded">toggle</button>
-      <p class="content-collapsed" ng-class="expanded ? 'content-expanded' : 'content-collapsed'">{{company_info.company.description}}</p>
 
-      <button ng-click="viewChildren(company_info.company.name, $index)" id="company_info.company.name">view {{company_info.company.name}}'s subsidiaries</button>
+      <img class="content-toggle" ng-click="expanded = !expanded" src="/assets/tattle_arrow.png">
+
+      <p class="content-collapsed" ng-class="expanded ? 'content-expanded' : 'content-collapsed'">
+        {{company_info.company.description}}
+      </p>
+
+      <button ng-click="viewChildren(company_info.company.name, 'na')" class="child-search">
+        view {{company_info.company.name}}'s subsidiaries
+      </button>
+
+      <div ng-repeat="child in company_info.children_info.children" class="child-searches">
+        <button ng-click="searchSubsidiary(child)" class="child-search">
+          {{child}}
+        </button>
+      </div>
 
     </div>
 
@@ -23,13 +35,15 @@
         <div class="column_main">
           <p class="category c-subhead">parent company</p>
           <p class="category">{{parent.name}}</p>
-          <button class="contentToggle" ng-click="expanded = !expanded">toggle</button></p>
+          <img class="content-toggle" ng-click="expanded = !expanded" src="/assets/tattle_arrow.png">
           <p class="content-collapsed" ng-class="expanded ? 'content-expanded' : 'content-collapsed'">{{parent.description}}</p>
 
-          <button ng-click="viewChildren(parent.name, $index)" id="parent.name">view {{parent.name}}'s subsidiaries</button>
+          <button ng-click="viewChildren(parent.name, $index)" id="parent.name" class="child-search">
+            view {{parent.name}}'s subsidiaries
+          </button>
 
-          <div ng-repeat="child in parent.children_info.children">
-            <button ng-click="searchSubsidiary(child)" id="child">{{child}}</button>
+          <div ng-repeat="child in parent.children_info.children" class="child-searches">
+            <button ng-click="searchSubsidiary(child)" class="child-search">{{child}}</button>
           </div>
         </div>
 
@@ -51,7 +65,7 @@
 
 </div>
 
-<div ng-show="company_info.company" id="news" class="clearfix">
+<div ng-show="company_info.nyt" id="news" class="clearfix">
 
   <div class="results_content">
     <div class="column_left">
@@ -60,15 +74,13 @@
 
     <div class="column_main">
       <p class="category">Articles we think you might like:</p>
-      <p ng-repeat="article in company_info.company.nyt.docs">
-        <a href="{{article.web_url}}" target="_blank">{{article.headline.main}}</a>
-      </p>
 
-      <div ng-repeat="parent in company_info.parents" >
-        <p ng-repeat="article in parent.nyt.docs">
-          <a href="{{article.web_url}}" target="_blank">{{article.headline.main}}</a>
-        </p>
+      <div class="double">
+        <div ng-repeat="article in company_info.nyt" class="nyt_spacing">
+          <a href="{{article.web_url}}" target="_blank" class="nyt-headline">{{article.headline.main}}</a>
+        </div>
       </div>
+
     </div>
   </div>
 
@@ -85,11 +97,11 @@
 
       <div>
         <p class="category c-subhead">{{company_info.company.name}} certification</p>
-        <p class="category">{{certification}}</p>
+        <p class="category">{{certification.name}}</p>
       </div>
 
       <div>
-        <p>Certification details coming soon.</p>
+        <p>{{certification.description}}</p>
       </div>
 
     </div>

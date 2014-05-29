@@ -1,11 +1,22 @@
 class FreebaseService
-  def children(parent_name)
-    resource = FreebaseAPI.session.mqlread([{ name: parent_name, type: "/organization/organization", child: [{ child: [] }] }])
-    resource[0]["child"].map { |relationship| relationship["child"][0] }
+  attr_reader :results
+  def initialize(company_name)
+    @company_name = company_name
+    @best_match = nil
+    @results = { "company" => { name: company_name }, "parents" => [] , nyt: []}
   end
 
-  def get_resource(company_name)
-    FreebaseAPI::Topic.search(company_name)
+  def children(parent_name)
+    children = FreebaseAPI.session.mqlread([{ name: parent_name, type: "/organization/organization", child: [{ child: [] }] }])
+    children[0]["child"].map { |relationship| relationship["child"][0] }.uniq
+  end
+
+  def get_resource(company)
+    FreebaseAPI::Topic.search(company)
+  end
+
+  def best_match(company)
+    get_resource(company).values.first
   end
 
   def get_description(id)
@@ -13,16 +24,31 @@ class FreebaseService
     resource.description || "No Description Available for this company. "
   end
 
-  def get_id(company)
-    resource = FreebaseAPI::Topic.search(company)
-    best_match = resource.values.first
-    best_match.id
+  def get_id(company_name)
+    best_match(company_name).id
   end
 
-  def get_parents(best_match)
-    FreebaseAPI.session.mqlread({:id => best_match.id, :'/organization/organization/parent' => [{ :parent => [] }] })
+  def get_parents
+    FreebaseAPI.session.mqlread({:id => get_id(@company_name), :'/organization/organization/parent' => [{ :parent => [] }] })
   end
+
+  def populate_parents
+    parents = get_parents
+    if parents
+      parents["/organization/organization/parent"].each_with_index do |parent, index|
+        unless parent['parent'][0] == @company_name || parent['parent'][0] == nil
+          results["parents"] << { name: parent['parent'][0], description: get_description(get_id(parent['parent'][0])) }
+        end
+      end
+    end
+  end
+
+  def search(company_name)
+    results["company"][:description] = get_description(get_id(@company_name))
+    populate_parents
+    @results
+  end
+
 end
 
-#FreebaseAPI.session.mqlread([{ name: "Viacom", type: "/organization/organization", child: [{ child: [] }] }])
 
