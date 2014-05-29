@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
     results["company"][:certifications] = certs_info(company_name)
 
     results = process_parents(results)
-    capitalize_headlines(results[:nyt])
+    results[:nyt] = clean_nyt(results[:nyt])
     results
   end
 
@@ -25,14 +25,38 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def clean_nyt(nyt_results)
+    capitalize_headlines(nyt_results)
+    minimize_dates(nyt_results)
+    unique_nyt(nyt_results)
+  end
+
+  def unique_nyt(nyt_results)
+    unique_results = []
+    headlines = []
+    nyt_results.each do |result|
+      unique_results << result unless headlines.include?(result["headline"]["main"])
+      headlines << result["headline"]["main"]
+    end
+    unique_results
+  end
+
+  def minimize_dates(nyt_results)
+    nyt_results.each do |result|
+      result["pub_date"].chomp!("T00:00:00Z")
+    end
+  end
+
   def process_parents(results)
     if results["parents"]
+      results["parents"].reverse!
       results["parents"].each do |parent|
         results[:nyt] += fetch_articles(parent[:name]) if parent[:name]
         results[:nyt].uniq!
         parent[:certifications] = certs_info(parent[:name])
       end
     end
+    results[:nyt] = nil if results[:nyt] == []
     results
   end
 
@@ -53,7 +77,11 @@ class ApplicationController < ActionController::Base
 
   def fetch_articles(query)
     nyt = NytimesMessenger.new
-    nyt.make_query(query)["docs"]
+    begin
+      nyt.make_query(query)["docs"]
+    rescue
+      []
+    end
   end
 
 end
