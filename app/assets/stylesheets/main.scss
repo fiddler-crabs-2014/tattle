@@ -58,6 +58,13 @@ p {
 a {
 	text-decoration: none;
 	color: $greeny-gray;
+  -webkit-transition: all .1s ease;
+  transition: all .1s ease;
+  &:hover {
+    color: $darker-blue;
+    -webkit-transition: all .1s ease;
+    transition: all .1s ease;
+  }
 }
 
 #tagline {
@@ -111,7 +118,7 @@ a {
   font-family: $museo-sans;
   color: $greeny-gray;
   font-weight: 100;
-  font-size: 3.52em;
+  font-size: 3.4em;
   margin: 0 0 0.6em 0;
 }
 
@@ -137,6 +144,15 @@ a {
 
 .nyt-headline {
   font-weight: 600;
+  text-transform: capitalize;
+  letter-spacing: 1px;
+  font-family: $chaparral-pro;
+  color: $greeny-gray;
+  font-size: 1.1em;
+}
+
+.nyt_spacing {
+  margin-bottom: 10px;
 }
 
 .hidden {
@@ -190,6 +206,15 @@ a {
   text-decoration: none;
   padding: 10px 18px;
   width: 24%;
+  outline: none;
+  &:hover {
+    background-color: $darker-blue;
+    -webkit-transition: all .5s ease;
+    transition: all .5s ease;
+  }
+  &:focus {
+    background-color: $darker-blue;
+  }
 }
 
 #myinput {
@@ -199,6 +224,11 @@ a {
 	margin-right: 1.32%;
 	width: 70%;
   padding-left: 2%;
+  outline: none;
+/*  &:focus {
+    border: 1px solid $dark-gray;
+    height: 43px;
+  }*/
 }
 
 input[type="text"] {
@@ -275,7 +305,7 @@ button.child-search {
 
 .column_left,
 .column_main {
-	margin: 3% 2% 0 0;
+	margin-top: 2%;
 	float: left;
 	display: block;
 }
@@ -289,6 +319,12 @@ button.child-search {
 .column_main {
 	width: 75%;
 	margin-right: 0px;
+}
+
+.double {
+  -webkit-column-count: 2;
+  -moz-column-count: 2;
+  column-count: 2;
 }
 
 .clear{clear:both;display:block;overflow:hidden;visibility:hidden;width:0;height:0}.clearfix:after{clear:both;content:' ';display:block;font-size:0;line-height:0;visibility:hidden;width:0;height:0}* html .clearfix,*:first-child+html .clearfix{zoom:1}
