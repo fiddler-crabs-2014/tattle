@@ -2,7 +2,7 @@ class FreebaseService
   attr_reader :results
   def initialize(company_name)
     @company_name = company_name
-    @best_match = nil
+    # @best_match = nil
     @results = { "company" => { name: company_name }, "parents" => [] , nyt: []}
   end
 
@@ -35,7 +35,7 @@ class FreebaseService
   def populate_parents
     parents = get_parents
     if parents
-      parents["/organization/organization/parent"].each_with_index do |parent, index|
+      parents["/organization/organization/parent"].each do |parent|
         unless parent['parent'][0] == @company_name || parent['parent'][0] == nil
           results["parents"] << { name: parent['parent'][0], description: get_description(get_id(parent['parent'][0])) }
         end
@@ -46,7 +46,7 @@ class FreebaseService
   def search(company_name)
     results["company"][:description] = get_description(get_id(@company_name))
     populate_parents
-    @results
+    results
   end
 
 end
