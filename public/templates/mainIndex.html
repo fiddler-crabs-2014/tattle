@@ -65,7 +65,7 @@
 
 </div>
 
-<div ng-show="company_info.company" id="news" class="clearfix">
+<div ng-show="company_info.nyt" id="news" class="clearfix">
 
   <div class="results_content">
     <div class="column_left">
@@ -74,15 +74,13 @@
 
     <div class="column_main">
       <p class="category">Articles we think you might like:</p>
-      <p ng-repeat="article in company_info.company.nyt.docs">
-        <a href="{{article.web_url}}" target="_blank" class="nyt-headline">{{article.headline.main}}</a>
-      </p>
 
-      <div ng-repeat="parent in company_info.parents" >
-        <p ng-repeat="article in parent.nyt.docs">
+      <div class="double">
+        <div ng-repeat="article in company_info.nyt" class="nyt_spacing">
           <a href="{{article.web_url}}" target="_blank" class="nyt-headline">{{article.headline.main}}</a>
-        </p>
+        </div>
       </div>
+
     </div>
   </div>
 
@@ -99,11 +97,11 @@
 
       <div>
         <p class="category c-subhead">{{company_info.company.name}} certification</p>
-        <p class="category">{{certification}}</p>
+        <p class="category">{{certification.name}}</p>
       </div>
 
       <div>
-        <p>Certification details coming soon.</p>
+        <p>{{certification.description}}</p>
       </div>
 
     </div>
