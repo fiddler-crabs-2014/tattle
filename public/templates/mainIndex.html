@@ -11,9 +11,9 @@
       <p class="category">{{company_info.company.name}}</p>
 
       <!-- <div class="content-toggle" ng-click="expanded = !expanded"  ng-class="expanded ? 'arrow-up' : 'arrow-down'"><div> -->
-      <img class="content-toggle" ng-show="company_info.company.description" ng-click="expanded = !expanded" ng-class="expanded ? 'arrow-up' : 'arrow-down'" src="/assets/tattle_arrow.png">
+      <img class="content-toggle" ng-show="company_info.company.description" ng-click="open = !open" ng-class="open ? 'arrow-up' : 'arrow-down'" src="/assets/tattle_arrow.png">
 
-      <p class="content-collapsed" ng-class="expanded ? 'content-expanded' : 'content-collapsed'">
+      <p class="content-collapsed" ng-class="open ? 'content-expanded' : 'content-collapsed'">
         {{company_info.company.description}}
       </p>
 
@@ -36,10 +36,10 @@
         <div class="column_main">
           <p class="category c-subhead">parent company</p>
           <p class="category">{{parent.name}}</p>
-          <img class="content-toggle" ng-click="expanded = !expanded" src="/assets/tattle_arrow.png">
+          <img class="content-toggle" ng-show="parent.description" ng-click="expanded = !expanded" src="/assets/tattle_arrow.png">
           <p class="content-collapsed" ng-class="expanded ? 'content-expanded' : 'content-collapsed'">{{parent.description}}</p>
 
-          <button ng-click="viewChildren(parent.name, $index)" id="parent.name" class="child-view">
+          <button ng-show="parent.description" ng-click="viewChildren(parent.name, $index)" id="parent.name" class="child-view">
             view {{parent.name}}'s subsidiaries
           </button>
 
