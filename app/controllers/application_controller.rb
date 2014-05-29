@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
     results["company"][:certifications] = certs_info(company_name)
 
     results = process_parents(results)
+    clean_nyt(results[:nyt])
     capitalize_headlines(results[:nyt])
     minimize_dates(results[:nyt])
     results
@@ -24,6 +25,11 @@ class ApplicationController < ActionController::Base
         { name: certification.name, description: certification.description } unless certification.class == String
       end
     end
+  end
+
+  def clean_nyt(nyt_results)
+    capitalize_headlines(nyt_results)
+    minimize_dates(nyt_results)
   end
 
   def minimize_dates(nyt_results)
