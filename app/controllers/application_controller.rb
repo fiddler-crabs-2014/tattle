@@ -12,7 +12,9 @@ class ApplicationController < ActionController::Base
     results["company"][:certifications] = certs_info(company_name)
 
     results = process_parents(results)
+    puts "RESULTS NYT #{results[:nyt]}"
     results[:nyt] = clean_nyt(results[:nyt])
+    results["parents"] = unique_parents(results["parents"])
     results
   end
 
@@ -41,6 +43,16 @@ class ApplicationController < ActionController::Base
     unique_results
   end
 
+  def unique_parents(parents)
+    unique_pars = []
+    descriptions = []
+    parents.each do |parent|
+      unique_pars<< parent unless descriptions.include?(parent[:description])
+      descriptions << parent[:description]
+    end
+    unique_pars
+  end
+
   def minimize_dates(nyt_results)
     nyt_results.each do |result|
       result["pub_date"].chomp!("T00:00:00Z")
@@ -56,7 +68,6 @@ class ApplicationController < ActionController::Base
         parent[:certifications] = certs_info(parent[:name])
       end
     end
-    results[:nyt] = nil if results[:nyt] == []
     results
   end
 
