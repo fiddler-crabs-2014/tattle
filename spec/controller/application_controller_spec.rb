@@ -1,57 +1,75 @@
 require 'spec_helper'
 
-describe ApplicationController do
+# describe ApplicationController do
 
-  describe "#generate_results" do
+#   before(:all) do 
+#     @controller = ApplicationController.new
+#     freebase = mock_model("FreebaseService")
+#   end
 
-    context "has a parent company with no certifications" do
+#   describe "#generate_results" do
 
-      before(:all) do
-        @results = generate_results("Burt's Bees")
-      end
+    # it "searches freebase" do
+      # results = generate_results("Burt's Bees").stub(freebase_search).and_return("")
 
-      context "has a parent company" do
+      # expect(results).to eq 
+      # results = @controller.send(:generate_results, "Burt's Bees").stub("freebase.search").and_return("freebase.search called")
 
-        it { @results.should be_a_kind_of(Hash) }
+      # expect(results).to eq "freebase.search called"
 
-        it { @results.should_not be_empty }
+      # @freebase_service.stub_chain("one.two.three").and_return(:four)
+      # subject.one.two.three.should eq(:four)
+  #   end
+  # end
 
-        it { @results["parents"][:name].should include("Clorox")}
-      end
+    # context "has a parent company with no certifications" do
 
-      context "has no certifications" do
-        it { @results["parent1"][:certifications].should include("None")}
-      end
-    end
+    #   before(:all) do
+    #     @results = generate_results("Burt's Bees")
+    #   end
 
-  end
+    #   context "has a parent company" do
 
+    #     it { @results.should be_a_kind_of(Hash) }
 
+    #     it { @results.should_not be_empty }
 
-  describe "#freebase_search" do
-    before(:all) do
-      @freebase_result = ApplicationController.freebase_search("Burt's Bees")
-    end
+    #     it { @results["parents"][:name].should include("Clorox")}
+    #   end
 
-    it { @freebase_result.should be_a_kind_of(Array) }
+    #   context "has no certifications" do
+    #     it { @results["parent1"][:certifications].should include("None")}
+    #   end
+    # end
 
-    it { @freebase_result.should include("Clorox") }
-
-  end
-
-
-  describe "#search_articles" do
-    before(:all) do
-      @articles_result = ApplicationController.search_articles("Burt's Bees")
-    end
-
-    it { @articles_result.should be_a_kind_of(Array) }
-
-    it { @articles_result[0].should include("date") }
-    it { @articles_result[0].should include("title") }
-    it { @articles_result[0].should include("url") }
+  # end
 
 
-  end
 
-end
+  # describe "#freebase_search" do
+  #   before(:all) do
+  #     @freebase_result = ApplicationController.freebase_search("Burt's Bees")
+  #   end
+
+  #   it { @freebase_result.should be_a_kind_of(Array) }
+
+  #   it { @freebase_result.should include("Clorox") }
+
+  # end
+
+
+  # describe "#fetch_articles" do
+  #   before(:all) do
+  #     @articles_result = ApplicationController.search_articles("Burt's Bees")
+  #   end
+
+  #   it { @articles_result.should be_a_kind_of(Array) }
+
+  #   it { @articles_result[0].should include("date") }
+  #   it { @articles_result[0].should include("title") }
+  #   it { @articles_result[0].should include("url") }
+
+
+  # end
+
+# end
