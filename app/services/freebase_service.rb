@@ -41,7 +41,7 @@ class FreebaseService
     puts "PARENTS: #{parents}"
     if parents
       parents["/organization/organization/parent"].each do |parent|
-        unless parent['parent'][0] == @company_name || parent['parent'][0] == nil || parent['parent'][0].match("Independent company")
+        unless parent['parent'][0] == @company_name || parent['parent'][0] == nil || parent['parent'][0].match("Independent company") || parent['parent'][0].match("Independent Company")
           results["parents"] << { name: parent['parent'][0].chomp(":"), description: get_description(get_id(parent['parent'][0])) }
         end
       end

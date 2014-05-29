@@ -1,0 +1,282 @@
+
+
+Started GET "/" for 127.0.0.1 at 2014-05-29 13:52:55 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by MainController#index as HTML
+  Rendered main/index.html.erb within layouts/application (8.4ms)
+Completed 200 OK in 659ms (Views: 658.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-05-29 13:52:57 -0400
+
+
+Started GET "/assets/vendor/angular.js?body=1" for 127.0.0.1 at 2014-05-29 13:52:57 -0400
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-05-29 13:52:57 -0400
+
+
+Started GET "/assets/main.css?body=1" for 127.0.0.1 at 2014-05-29 13:52:57 -0400
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2014-05-29 13:52:57 -0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-05-29 13:52:57 -0400
+
+
+Started GET "/assets/vendor/angular-route.js?body=1" for 127.0.0.1 at 2014-05-29 13:52:57 -0400
+
+
+Started GET "/assets/vendor/angular-resource.js?body=1" for 127.0.0.1 at 2014-05-29 13:52:57 -0400
+
+
+Started GET "/assets/controllers/main/mainBrowseCtrl.js?body=1" for 127.0.0.1 at 2014-05-29 13:52:57 -0400
+
+
+Started GET "/assets/controllers/main/mainIndexCtrl.js?body=1" for 127.0.0.1 at 2014-05-29 13:52:57 -0400
+
+
+Started GET "/assets/controllers/main/mainResultsCtrl.js?body=1" for 127.0.0.1 at 2014-05-29 13:52:57 -0400
+
+
+Started GET "/assets/freebase/searchbar.js?body=1" for 127.0.0.1 at 2014-05-29 13:52:57 -0400
+
+
+Started GET "/assets/main.js?body=1" for 127.0.0.1 at 2014-05-29 13:52:57 -0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-05-29 13:52:57 -0400
+
+
+Started GET "/assets/tattle_logo.png" for 127.0.0.1 at 2014-05-29 13:52:57 -0400
+
+
+Started GET "/assets/tattle_suitcase.png" for 127.0.0.1 at 2014-05-29 13:52:57 -0400
+
+
+Started GET "/assets/tattle_arrow.png" for 127.0.0.1 at 2014-05-29 13:52:57 -0400
+
+
+Started GET "/assets/tattle_nyt.png" for 127.0.0.1 at 2014-05-29 13:52:57 -0400
+
+
+Started GET "/assets/tattle_ribbon.png" for 127.0.0.1 at 2014-05-29 13:52:57 -0400
+
+
+Started GET "/search?company=Chipotle+Mexican+Grill" for 127.0.0.1 at 2014-05-29 13:53:21 -0400
+Processing by MainController#search as HTML
+  Parameters: {"company"=>"Chipotle Mexican Grill"}
+  [1m[35mCompany Load (13.5ms)[0m  SELECT  "companies".* FROM "companies"  WHERE (name like '%Chipotle Mexican Grill%')  ORDER BY "companies"."id" ASC LIMIT 1
+Completed 200 OK in 2210ms (Views: 0.8ms | ActiveRecord: 14.5ms)
+
+
+Started GET "/children?company=Chipotle+Mexican+Grill" for 127.0.0.1 at 2014-05-29 13:53:39 -0400
+Processing by MainController#children as HTML
+  Parameters: {"company"=>"Chipotle Mexican Grill"}
+Completed 200 OK in 179ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/search?company=Starbucks" for 127.0.0.1 at 2014-05-29 13:54:09 -0400
+Processing by MainController#search as HTML
+  Parameters: {"company"=>"Starbucks"}
+  [1m[36mCompany Load (1.1ms)[0m  [1mSELECT  "companies".* FROM "companies"  WHERE (name like '%Starbucks%')  ORDER BY "companies"."id" ASC LIMIT 1[0m
+  [1m[35mCertificate Load (4.6ms)[0m  SELECT "certificates".* FROM "certificates" INNER JOIN "certifications" ON "certificates"."id" = "certifications"."certificate_id" WHERE "certifications"."company_id" = $1  [["company_id", 960]]
+Completed 200 OK in 2579ms (Views: 2.6ms | ActiveRecord: 33.1ms)
+
+
+Started GET "/children?company=Starbucks" for 127.0.0.1 at 2014-05-29 13:54:15 -0400
+Processing by MainController#children as HTML
+  Parameters: {"company"=>"Starbucks"}
+Completed 200 OK in 145ms (Views: 0.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/search?company=Toyota+Motor+Corporation" for 127.0.0.1 at 2014-05-29 13:56:14 -0400
+Processing by MainController#search as HTML
+  Parameters: {"company"=>"Toyota Motor Corporation"}
+  [1m[36mCompany Load (8.2ms)[0m  [1mSELECT  "companies".* FROM "companies"  WHERE (name like '%Toyota Motor Corporation%')  ORDER BY "companies"."id" ASC LIMIT 1[0m
+  [1m[35mCompany Load (8.0ms)[0m  SELECT  "companies".* FROM "companies"  WHERE (name like '%Toyota Group%')  ORDER BY "companies"."id" ASC LIMIT 1
+  [1m[36mCompany Load (12.3ms)[0m  [1mSELECT  "companies".* FROM "companies"  WHERE (name like '%Toyota Industries%')  ORDER BY "companies"."id" ASC LIMIT 1[0m
+Completed 200 OK in 4239ms (Views: 103.3ms | ActiveRecord: 28.5ms)
+
+
+Started GET "/assets/tattle_arrow.png" for 127.0.0.1 at 2014-05-29 13:56:18 -0400
+
+
+Started GET "/children?company=Toyota+Industries" for 127.0.0.1 at 2014-05-29 13:56:22 -0400
+Processing by MainController#children as HTML
+  Parameters: {"company"=>"Toyota Industries"}
+Completed 200 OK in 145ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/children?company=Toyota+Motor+Corporation" for 127.0.0.1 at 2014-05-29 13:56:25 -0400
+Processing by MainController#children as HTML
+  Parameters: {"company"=>"Toyota Motor Corporation"}
+Completed 200 OK in 243ms (Views: 0.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/search?company=Hino+Motors" for 127.0.0.1 at 2014-05-29 13:57:05 -0400
+Processing by MainController#search as HTML
+  Parameters: {"company"=>"Hino Motors"}
+  [1m[35mCompany Load (9.3ms)[0m  SELECT  "companies".* FROM "companies"  WHERE (name like '%Hino Motors%')  ORDER BY "companies"."id" ASC LIMIT 1
+  [1m[36mCompany Load (8.1ms)[0m  [1mSELECT  "companies".* FROM "companies"  WHERE (name like '%Toyota Motor Corporation%')  ORDER BY "companies"."id" ASC LIMIT 1[0m
+Completed 200 OK in 3270ms (Views: 3.7ms | ActiveRecord: 17.4ms)
+
+
+Started GET "/assets/tattle_arrow.png" for 127.0.0.1 at 2014-05-29 13:57:08 -0400
+
+
+Started GET "/children?company=Hino+Motors" for 127.0.0.1 at 2014-05-29 13:57:11 -0400
+Processing by MainController#children as HTML
+  Parameters: {"company"=>"Hino Motors"}
+Completed 500 Internal Server Error in 116ms
+
+NoMethodError (undefined method `[]' for nil:NilClass):
+  app/services/freebase_service.rb:11:in `children'
+  app/controllers/main_controller.rb:17:in `block (2 levels) in children'
+  app/controllers/main_controller.rb:16:in `children'
+
+
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.6ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.0ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.6ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (18.2ms)
+
+
+Started GET "/search?company=Toyota+Motor+Corporation" for 127.0.0.1 at 2014-05-29 13:57:33 -0400
+Processing by MainController#search as HTML
+  Parameters: {"company"=>"Toyota Motor Corporation"}
+  [1m[35mCompany Load (8.1ms)[0m  SELECT  "companies".* FROM "companies"  WHERE (name like '%Toyota Motor Corporation%')  ORDER BY "companies"."id" ASC LIMIT 1
+  [1m[36mCompany Load (8.6ms)[0m  [1mSELECT  "companies".* FROM "companies"  WHERE (name like '%Toyota Group%')  ORDER BY "companies"."id" ASC LIMIT 1[0m
+  [1m[35mCompany Load (8.9ms)[0m  SELECT  "companies".* FROM "companies"  WHERE (name like '%Toyota Industries%')  ORDER BY "companies"."id" ASC LIMIT 1
+Completed 200 OK in 3929ms (Views: 6.1ms | ActiveRecord: 25.6ms)
+
+
+Started GET "/assets/tattle_arrow.png" for 127.0.0.1 at 2014-05-29 13:57:37 -0400
+
+
+Started GET "/children?company=Toyota+Group" for 127.0.0.1 at 2014-05-29 13:57:40 -0400
+Processing by MainController#children as HTML
+  Parameters: {"company"=>"Toyota Group"}
+Completed 200 OK in 160ms (Views: 0.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/children?company=Toyota+Industries" for 127.0.0.1 at 2014-05-29 13:57:43 -0400
+Processing by MainController#children as HTML
+  Parameters: {"company"=>"Toyota Industries"}
+Completed 200 OK in 113ms (Views: 0.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/children?company=Toyota+Motor+Corporation" for 127.0.0.1 at 2014-05-29 13:57:45 -0400
+Processing by MainController#children as HTML
+  Parameters: {"company"=>"Toyota Motor Corporation"}
+Completed 200 OK in 289ms (Views: 0.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/search?company=Hino+Motors" for 127.0.0.1 at 2014-05-29 13:57:47 -0400
+Processing by MainController#search as HTML
+  Parameters: {"company"=>"Hino Motors"}
+  [1m[36mCompany Load (9.5ms)[0m  [1mSELECT  "companies".* FROM "companies"  WHERE (name like '%Hino Motors%')  ORDER BY "companies"."id" ASC LIMIT 1[0m
+  [1m[35mCompany Load (8.4ms)[0m  SELECT  "companies".* FROM "companies"  WHERE (name like '%Toyota Motor Corporation%')  ORDER BY "companies"."id" ASC LIMIT 1
+Completed 200 OK in 2359ms (Views: 3.1ms | ActiveRecord: 17.9ms)
+
+
+Started GET "/assets/tattle_arrow.png" for 127.0.0.1 at 2014-05-29 13:57:49 -0400
+
+
+Started GET "/search?company=Blizzard+Entertainment" for 127.0.0.1 at 2014-05-29 13:58:10 -0400
+Processing by MainController#search as HTML
+  Parameters: {"company"=>"Blizzard Entertainment"}
+  [1m[36mCompany Load (8.3ms)[0m  [1mSELECT  "companies".* FROM "companies"  WHERE (name like '%Blizzard Entertainment%')  ORDER BY "companies"."id" ASC LIMIT 1[0m
+  [1m[35mCompany Load (8.0ms)[0m  SELECT  "companies".* FROM "companies"  WHERE (name like '%Independent Company%')  ORDER BY "companies"."id" ASC LIMIT 1
+  [1m[36mCompany Load (9.8ms)[0m  [1mSELECT  "companies".* FROM "companies"  WHERE (name like '%Activision Blizzard%')  ORDER BY "companies"."id" ASC LIMIT 1[0m
+  [1m[35mCompany Load (9.4ms)[0m  SELECT  "companies".* FROM "companies"  WHERE (name like '%Vivendi Games%')  ORDER BY "companies"."id" ASC LIMIT 1
+  [1m[36mCompany Load (14.1ms)[0m  [1mSELECT  "companies".* FROM "companies"  WHERE (name like '%Vivendi%')  ORDER BY "companies"."id" ASC LIMIT 1[0m
+  [1m[35mCompany Load (13.5ms)[0m  SELECT  "companies".* FROM "companies"  WHERE (name like '%VG Treasury SAS%')  ORDER BY "companies"."id" ASC LIMIT 1
+Completed 200 OK in 7975ms (Views: 10.3ms | ActiveRecord: 63.1ms)
+
+
+Started GET "/assets/tattle_arrow.png" for 127.0.0.1 at 2014-05-29 13:58:18 -0400
+
+
+Started GET "/children?company=Vivendi" for 127.0.0.1 at 2014-05-29 13:58:31 -0400
+Processing by MainController#children as HTML
+  Parameters: {"company"=>"Vivendi"}
+Completed 200 OK in 164ms (Views: 0.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-05-29 13:59:25 -0400
+Processing by MainController#index as HTML
+  Rendered main/index.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 7ms (Views: 7.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-05-29 13:59:25 -0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-05-29 13:59:25 -0400
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2014-05-29 13:59:25 -0400
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-05-29 13:59:25 -0400
+
+
+Started GET "/assets/main.css?body=1" for 127.0.0.1 at 2014-05-29 13:59:25 -0400
+
+
+Started GET "/assets/vendor/angular.js?body=1" for 127.0.0.1 at 2014-05-29 13:59:25 -0400
+
+
+Started GET "/assets/vendor/angular-resource.js?body=1" for 127.0.0.1 at 2014-05-29 13:59:25 -0400
+
+
+Started GET "/assets/controllers/main/mainBrowseCtrl.js?body=1" for 127.0.0.1 at 2014-05-29 13:59:25 -0400
+
+
+Started GET "/assets/vendor/angular-route.js?body=1" for 127.0.0.1 at 2014-05-29 13:59:25 -0400
+
+
+Started GET "/assets/controllers/main/mainIndexCtrl.js?body=1" for 127.0.0.1 at 2014-05-29 13:59:25 -0400
+
+
+Started GET "/assets/controllers/main/mainResultsCtrl.js?body=1" for 127.0.0.1 at 2014-05-29 13:59:25 -0400
+
+
+Started GET "/assets/freebase/searchbar.js?body=1" for 127.0.0.1 at 2014-05-29 13:59:25 -0400
+
+
+Started GET "/assets/main.js?body=1" for 127.0.0.1 at 2014-05-29 13:59:25 -0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-05-29 13:59:25 -0400
+
+
+Started GET "/assets/tattle_logo.png" for 127.0.0.1 at 2014-05-29 13:59:25 -0400
+
+
+Started GET "/assets/tattle_suitcase.png" for 127.0.0.1 at 2014-05-29 13:59:26 -0400
+
+
+Started GET "/assets/tattle_ribbon.png" for 127.0.0.1 at 2014-05-29 13:59:26 -0400
+
+
+Started GET "/assets/tattle_nyt.png" for 127.0.0.1 at 2014-05-29 13:59:26 -0400
+
+
+Started GET "/assets/tattle_arrow.png" for 127.0.0.1 at 2014-05-29 13:59:26 -0400
+
+
+Started GET "/search?company=Blizzard+Entertainment" for 127.0.0.1 at 2014-05-29 13:59:28 -0400
+Processing by MainController#search as HTML
+  Parameters: {"company"=>"Blizzard Entertainment"}
+  [1m[36mCompany Load (7.9ms)[0m  [1mSELECT  "companies".* FROM "companies"  WHERE (name like '%Blizzard Entertainment%')  ORDER BY "companies"."id" ASC LIMIT 1[0m
+  [1m[35mCompany Load (9.8ms)[0m  SELECT  "companies".* FROM "companies"  WHERE (name like '%Activision Blizzard%')  ORDER BY "companies"."id" ASC LIMIT 1
+  [1m[36mCompany Load (7.8ms)[0m  [1mSELECT  "companies".* FROM "companies"  WHERE (name like '%Vivendi Games%')  ORDER BY "companies"."id" ASC LIMIT 1[0m
+  [1m[35mCompany Load (8.6ms)[0m  SELECT  "companies".* FROM "companies"  WHERE (name like '%Vivendi%')  ORDER BY "companies"."id" ASC LIMIT 1
+  [1m[36mCompany Load (8.2ms)[0m  [1mSELECT  "companies".* FROM "companies"  WHERE (name like '%VG Treasury SAS%')  ORDER BY "companies"."id" ASC LIMIT 1[0m
+Completed 200 OK in 5697ms (Views: 2.9ms | ActiveRecord: 43.8ms)
+
+
+Started GET "/assets/tattle_arrow.png" for 127.0.0.1 at 2014-05-29 13:59:33 -0400
