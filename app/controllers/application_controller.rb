@@ -27,13 +27,14 @@ class ApplicationController < ActionController::Base
 
   def process_parents(results)
     if results["parents"]
+      results["parents"].reverse!
       results["parents"].each do |parent|
-        puts "PARENT NAME: #{parent[:name]}"
         results[:nyt] += fetch_articles(parent[:name]) if parent[:name]
         results[:nyt].uniq!
         parent[:certifications] = certs_info(parent[:name])
       end
     end
+    results[:nyt] = nil if results[:nyt] == []
     results
   end
 
@@ -54,7 +55,11 @@ class ApplicationController < ActionController::Base
 
   def fetch_articles(query)
     nyt = NytimesMessenger.new
-    nyt.make_query(query)["docs"]
+    begin
+      nyt.make_query(query)["docs"]
+    rescue
+      []
+    end
   end
 
 end
