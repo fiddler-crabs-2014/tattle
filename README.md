@@ -39,4 +39,4 @@ Work in progress.
 | Tyler Adams | [tyleraadams](https://github.com/tyleraadams) | [@tyleraadams](http://twitter.com/tyleraadams) | |
 | Keaty Gross | [keaty](https://github.com/keaty) | [@keatycodes](http://twitter.com/keatycodes)  | product manager
 | Adam Godel  | [onweapps](https://github.com/onweapps) | [@adam_godel](http://twitter.com/adam_godel) | technical lead | 
-| Julia Himmel | [juliahimmel](https://github.com/juliahimmel) | [@julia_himmel](twitter.com/julia_himmel)| |
+| Julia Himmel | [juliahimmel](https://github.com/juliahimmel) | [@julia_himmel](http://twitter.com/julia_himmel)| |
