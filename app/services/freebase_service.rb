@@ -8,7 +8,7 @@ class FreebaseService
 
   def children(parent_name)
     children = FreebaseAPI.session.mqlread([{ name: parent_name, type: "/organization/organization", child: [{ child: [] }] }])
-    children[0]["child"].map { |relationship| relationship["child"][0] }
+    children[0]["child"].map { |relationship| relationship["child"][0] }.uniq
   end
 
   def get_resource(company)
@@ -32,10 +32,6 @@ class FreebaseService
     FreebaseAPI.session.mqlread({:id => get_id(@company_name), :'/organization/organization/parent' => [{ :parent => [] }] })
   end
 
-  def get_industry(search_result)
-    search_result.as_json["data"]["property"]["/common/topic/notable_for"]["values"][0]["text"]
-  end
-
   def populate_parents
     parents = get_parents
     if parents
@@ -48,7 +44,6 @@ class FreebaseService
   end
 
   def search(company_name)
-    @results[:industry] = get_industry(best_match(@company_name))
     results["company"][:description] = get_description(get_id(@company_name))
     populate_parents
     @results
