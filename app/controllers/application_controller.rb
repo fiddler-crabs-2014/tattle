@@ -28,6 +28,7 @@ class ApplicationController < ActionController::Base
   def process_parents(results)
     if results["parents"]
       results["parents"].each do |parent|
+        puts "PARENT NAME: #{parent[:name]}"
         results[:nyt] += fetch_articles(parent[:name]) if parent[:name]
         results[:nyt].uniq!
         parent[:certifications] = certs_info(parent[:name])
